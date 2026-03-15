@@ -25,6 +25,27 @@ export default {
     // fire the Cassidy webhook (non-blocking). Returns {sessionId} immediately
     // so the frontend can start polling.
     if (request.method === 'POST' && url.pathname === '/') {
+      // ── Rate limiting: max 5 submissions per IP per hour ──────────────────
+      const ip = request.headers.get('CF-Connecting-IP') ||
+                 request.headers.get('X-Forwarded-For') ||
+                 'unknown';
+      const rateLimitKey = `ratelimit:${ip}`;
+      const RATE_LIMIT    = 5;
+      const WINDOW_TTL    = 3600; // 1 hour in seconds
+
+      const currentCountStr = await env.RESULTS_KV.get(rateLimitKey);
+      const currentCount    = currentCountStr ? parseInt(currentCountStr, 10) : 0;
+
+      if (currentCount >= RATE_LIMIT) {
+        return new Response(
+          JSON.stringify({ error: 'Too many requests. Please try again later.' }),
+          { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+
+      // Increment counter (reset TTL on each increment so window is sliding)
+      await env.RESULTS_KV.put(rateLimitKey, String(currentCount + 1), { expirationTtl: WINDOW_TTL });
+
       const sessionId = crypto.randomUUID();
       let payload;
       try {
