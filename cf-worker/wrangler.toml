@@ -4,4 +4,4 @@ compatibility_date = "2024-01-01"
 
 [[kv_namespaces]]
 binding = "RESULTS_KV"
-id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+id = "74dd827c24964f169aa3b094fbd690d8"
