@@ -1,0 +1,16 @@
+<svg width="52" height="36" viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- EC open book mark — white outline version for navy backgrounds -->
+
+  <!-- Right page: back layers (fanning effect) -->
+  <path d="M27 32 C33 4 46 2 50 8" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"/>
+  <path d="M27 32 C33 5 46 5 50 12" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+
+  <!-- Left page -->
+  <path d="M25 32 C21 8 6 8 2 18" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Right page: front -->
+  <path d="M27 32 C33 8 46 8 50 18" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Spine (center bottom) -->
+  <path d="M25 32 L27 32" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

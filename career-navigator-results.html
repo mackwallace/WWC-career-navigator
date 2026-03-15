@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Career Report — Career Navigator by Enterprise Commons</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── ROOT VARIABLES ── */
+    :root {
+      --deep-navy:    #1B3A5F;
+      --teal:         #2A9D8E;
+      --teal-hover:   #24897C;
+      --teal-light:   #E9F7F5;
+      --bright-green: #80B517;
+      --green-light:  rgba(128,181,23,0.10);
+      --orange:       #E8734F;
+      --orange-light: rgba(232,115,79,0.10);
+      --slate-gray:   #62748D;
+      --border:       #E1E7EF;
+      --body-bg:      #F8FAFC;
+      --card-bg:      #FFFFFF;
+      --shadow-card:  0 2px 4px rgba(27,58,95,0.08), 0 4px 16px rgba(27,58,95,0.06);
+      --shadow-hover: 0 8px 24px rgba(27,58,95,0.14), 0 16px 40px rgba(27,58,95,0.10);
+      --radius:       10px;
+      --max-width:    800px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--body-bg);
+      color: var(--deep-navy);
+      font-size: 15px;
+      line-height: 1.6;
+      background-image: radial-gradient(circle, #C8D0DC 1px, transparent 1px);
+      background-size: 24px 24px;
+      background-attachment: fixed;
+    }
+
+    /* ── STICKY HEADER ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 64px;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      box-shadow: 0 1px 8px rgba(27,58,95,0.07);
+    }
+    .header-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .header-lockup-logo { height: 24px; width: auto; }
+    .header-lockup-text { display: flex; flex-direction: column; gap: 1px; }
+    .header-lockup-name {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--deep-navy);
+      line-height: 1.2;
+    }
+    .header-lockup-by {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--slate-gray);
+      letter-spacing: 0.02em;
+    }
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--slate-gray);
+    }
+    .header-meta-sep { color: var(--border); }
+
+    /* ── HERO ── */
+    .report-hero {
+      background: linear-gradient(135deg, #1B3A5F 0%, #1e4d6b 55%, #1f5e6a 100%);
+      padding: 64px 32px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .report-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 280px at 15% 60%, rgba(42,157,142,0.16) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 300px at 85% 20%, rgba(42,157,142,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: rgba(42,157,142,0.15);
+      border: 1px solid rgba(42,157,142,0.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      margin-bottom: 20px;
+      animation: fadeUp 0.5s 0.1s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .hero-title {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      animation: fadeUp 0.5s 0.2s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .hero-name {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 20px;
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 14px;
+      animation: fadeUp 0.5s 0.3s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .hero-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      animation: fadeUp 0.5s 0.4s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .hero-meta-sep { color: rgba(255,255,255,0.2); }
+
+    /* ── MAIN ── */
+    .report-main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* ── SECTION REVEAL ── */
+    .report-section {
+      margin-bottom: 36px;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .report-section.revealed { opacity: 1; transform: none; }
+
+    /* Section label */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .section-label-text {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      white-space: nowrap;
+    }
+    .section-label-line { flex: 1; height: 1px; background: var(--border); }
+
+    /* Card base */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      padding: 28px 32px;
+    }
+
+    /* ── PROFILE ── */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0;
+    }
+    .profile-col { padding: 0 24px; }
+    .profile-col:first-child { padding-left: 0; }
+    .profile-col:last-child  { padding-right: 0; }
+    .profile-divider { background: var(--border); margin: 4px 0; }
+    .profile-field { margin-bottom: 16px; }
+    .profile-field:last-child { margin-bottom: 0; }
+    .profile-field-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--slate-gray);
+      margin-bottom: 4px;
+    }
+    .profile-field-value {
+      font-size: 13.5px;
+      color: var(--deep-navy);
+      font-weight: 500;
+      line-height: 1.45;
+    }
+    .competency-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .competency-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--slate-gray);
+      line-height: 1.4;
+    }
+    .competency-list li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--teal);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    /* ── QUESTION ── */
+    .question-card {
+      border-left: 4px solid var(--teal);
+      background: var(--card-bg);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 24px 28px;
+      box-shadow: var(--shadow-card);
+    }
+    .question-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .question-text {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 16.5px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--deep-navy);
+      line-height: 1.7;
+    }
+
+    /* ── TRANSFORMATION ARC ── */
+    /* Pathways wrapper — single white panel containing intro + all cards */
+    .pathways-wrapper {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .pathways-intro {
+      padding: 22px 28px 18px;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-deck {
+      font-size: 14px;
+      color: var(--slate-gray);
+      line-height: 1.65;
+    }
+    /* Pathway cards inside the wrapper lose individual shadow/radius */
+    .pathways-wrapper .pathway-card {
+      box-shadow: none;
+      border-radius: 0;
+      border-top: 1px solid var(--border);
+      border-right: none;
+      border-bottom: none;
+      margin-bottom: 0;
+      padding: 24px 28px;
+    }
+    .pathways-wrapper .pathway-card:last-child {
+      border-bottom: none;
+    }
+
+    /* Career challenge narrative */
+    .challenge-block {
+      background: var(--body-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      padding: 20px 22px;
+      margin-bottom: 20px;
+    }
+    .challenge-block-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .challenge-block-text {
+      font-size: 14px;
+      color: var(--deep-navy);
+      line-height: 1.7;
+    }
+
+    /* Advantages */
+    .advantages-list { display: flex; flex-direction: column; gap: 10px; }
+    .advantage-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      background: var(--body-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .advantage-num {
+      font-family: 'Merriweather', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: rgba(27,58,95,0.11);
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 28px;
+    }
+    .advantage-title {
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--deep-navy);
+      margin-bottom: 3px;
+    }
+    .advantage-desc {
+      font-size: 12.5px;
+      color: var(--slate-gray);
+      line-height: 1.55;
+    }
+
+    /* ── PATHWAY CARDS ── */
+    .pathway-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      border-left: 5px solid var(--border);
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.25s ease, border-left-width 0.2s ease, border-left-color 0.2s ease;
+    }
+    .pathway-card:last-child { margin-bottom: 0; }
+    .pathway-card:hover { box-shadow: var(--shadow-hover); }
+    .pathway-card.primary {
+      border-left-color: var(--teal);
+      background: rgba(42,157,142,0.03);
+    }
+    .pathway-card.alt-b { border-left-color: var(--deep-navy); }
+    .pathway-card.alt-c { border-left-color: var(--orange); }
+
+    /* Card hover — border thickens, content nudges right */
+    .pathway-card.primary:hover  { border-left-width: 7px; }
+    .pathway-card.alt-b:hover    { border-left-width: 7px; }
+    .pathway-card.alt-c:hover    { border-left-width: 7px; }
+
+    .pathway-card-inner {
+      transition: transform 0.2s ease;
+    }
+    .pathway-card:hover .pathway-card-inner {
+      transform: translateX(2px);
+    }
+
+    /* Decorative chapter letter — background watermark */
+    .pathway-card::before {
+      content: attr(data-letter);
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 160px;
+      font-weight: 700;
+      line-height: 1;
+      position: absolute;
+      top: -16px;
+      right: 16px;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -4px;
+      transition: color 0.3s ease;
+    }
+    .pathway-card.primary::before   { color: rgba(42,157,142,0.07); }
+    .pathway-card.alt-b::before     { color: rgba(27,58,95,0.05); }
+    .pathway-card.alt-c::before     { color: rgba(232,115,79,0.07); }
+    .pathway-card.primary:hover::before   { color: rgba(42,157,142,0.13); }
+    .pathway-card.alt-b:hover::before     { color: rgba(27,58,95,0.10); }
+    .pathway-card.alt-c:hover::before     { color: rgba(232,115,79,0.13); }
+
+    /* Inside wrapper: flush, no individual shadow/radius */
+    .pathways-wrapper .pathway-card {
+      box-shadow: none;
+      border-radius: 0;
+      border-top: 1px solid var(--border);
+      border-right: none;
+      border-bottom: none;
+      margin-bottom: 0;
+      padding: 28px 32px;
+    }
+    .pathways-wrapper .pathway-card:last-child { border-bottom: none; }
+
+    .pathway-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .pathway-chapter-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--slate-gray);
+      margin-bottom: 6px;
+    }
+    .pathway-card.primary   .pathway-chapter-label { color: var(--teal); }
+    .pathway-card.alt-b     .pathway-chapter-label { color: var(--deep-navy); }
+    .pathway-card.alt-c     .pathway-chapter-label { color: var(--orange); }
+    .pathway-title {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--deep-navy);
+      line-height: 1.25;
+    }
+    .pathway-badge {
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .badge-primary { background: var(--teal-light); color: var(--teal); border: 1px solid rgba(42,157,142,0.25); }
+    .badge-alt     { background: rgba(27,58,95,0.07); color: var(--deep-navy); border: 1px solid var(--border); }
+    .badge-third   { background: var(--orange-light); color: var(--orange); border: 1px solid rgba(232,115,79,0.25); }
+
+    .pathway-body {
+      font-size: 13.5px;
+      color: var(--slate-gray);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .pathway-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .pathway-detail {
+      background: var(--body-bg);
+      border-radius: 6px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .pathway-card.primary   .pathway-detail:hover { background: rgba(42,157,142,0.05); border-color: rgba(42,157,142,0.3); }
+    .pathway-card.alt-b     .pathway-detail:hover { background: rgba(27,58,95,0.05);   border-color: rgba(27,58,95,0.25); }
+    .pathway-card.alt-c     .pathway-detail:hover { background: rgba(232,115,79,0.05); border-color: rgba(232,115,79,0.3); }
+    .pathway-card.primary   .pathway-detail:hover .pathway-detail-label { color: var(--teal); }
+    .pathway-card.alt-b     .pathway-detail:hover .pathway-detail-label { color: var(--deep-navy); }
+    .pathway-card.alt-c     .pathway-detail:hover .pathway-detail-label { color: var(--orange); }
+    .pathway-detail-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--slate-gray);
+      margin-bottom: 5px;
+      transition: color 0.2s ease;
+    }
+    .pathway-detail-text { font-size: 12.5px; color: var(--deep-navy); line-height: 1.5; }
+
+    .pathway-actions {
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      padding-left: 10px;
+      border-left: 2px solid transparent;
+      transition: border-left-color 0.25s ease, padding-left 0.25s ease;
+      margin-left: -12px;
+    }
+    .pathway-card.primary:hover   .pathway-actions { border-left-color: var(--teal); }
+    .pathway-card.alt-b:hover     .pathway-actions { border-left-color: var(--deep-navy); }
+    .pathway-card.alt-c:hover     .pathway-actions { border-left-color: var(--orange); }
+    .pathway-actions-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .pathway-card.alt-b .pathway-actions-label { color: var(--deep-navy); }
+    .pathway-card.alt-c .pathway-actions-label { color: var(--orange); }
+    .pathway-actions-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .pathway-actions-list li {
+      display: flex;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--slate-gray);
+      line-height: 1.45;
+      transition: color 0.15s ease, transform 0.15s ease;
+    }
+    .pathway-actions-list li:hover {
+      color: var(--deep-navy);
+      transform: translateX(3px);
+    }
+    .pathway-actions-list li::before {
+      content: '→';
+      color: var(--teal);
+      font-size: 11px;
+      margin-top: 1px;
+      flex-shrink: 0;
+      transition: color 0.15s ease, transform 0.15s ease;
+    }
+    .pathway-card.alt-b .pathway-actions-list li::before { color: var(--deep-navy); }
+    .pathway-card.alt-c .pathway-actions-list li::before { color: var(--orange); }
+    .pathway-actions-list li:hover::before { transform: translateX(2px); }
+
+    /* ── RECOMMENDATION ── */
+    .recommendation-card {
+      background: var(--deep-navy);
+      border-radius: var(--radius);
+      padding: 36px 36px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .recommendation-card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(42,157,142,0.12);
+      pointer-events: none;
+    }
+    .recommendation-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -30px;
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      background: rgba(42,157,142,0.07);
+      pointer-events: none;
+    }
+    .rec-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .rec-title {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .rec-body {
+      font-size: 14px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .rec-points {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .rec-point {
+      display: flex;
+      gap: 12px;
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 7px;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-left: 2px solid transparent;
+      transition: background 0.2s ease, border-left-color 0.2s ease;
+      cursor: default;
+    }
+    .rec-point:hover {
+      background: rgba(255,255,255,0.11);
+      border-left-color: rgba(255,255,255,0.3);
+    }
+    .rec-point-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(42,157,142,0.25);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: rgba(255,255,255,0.75);
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+    .rec-point:hover .rec-point-icon {
+      color: #fff;
+      background: rgba(42,157,142,0.45);
+    }
+    .rec-point-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .rec-point-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.5;
+      transition: color 0.2s ease;
+    }
+    .rec-point:hover .rec-point-desc { color: rgba(255,255,255,0.78); }
+
+    /* Checkmark icon pulse — fires once on viewport entry */
+    @keyframes iconPulse {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.18); }
+      100% { transform: scale(1); }
+    }
+    .rec-point-icon.pulse { animation: iconPulse 0.4s ease forwards; }
+
+    /* ── NEXT STEPS ── */
+    .nextsteps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .nextstep-col {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      padding: 24px 26px;
+      border-top: 1px solid var(--border);
+      transition: box-shadow 0.25s ease, transform 0.25s ease, border-top-color 0.25s ease, border-top-width 0.2s ease;
+    }
+    .nextstep-col:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+    .nextstep-col.col-30:hover { border-top: 3px solid var(--teal); }
+    .nextstep-col.col-36:hover { border-top: 3px solid var(--bright-green); }
+    .nextstep-col-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nextstep-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .badge-30days { background: var(--teal-light); }
+    .badge-36mo   { background: var(--green-light); }
+    .nextstep-col-title {
+      font-family: 'Merriweather', serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--deep-navy);
+      line-height: 1.2;
+    }
+    .nextstep-col-sub { font-size: 11px; color: var(--slate-gray); }
+    .nextstep-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .nextstep-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      transition: transform 0.15s ease;
+    }
+    .nextstep-item:hover { transform: translateX(3px); }
+    .nextstep-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .col-30 .nextstep-num { background: var(--teal-light); color: var(--teal); }
+    .col-36 .nextstep-num { background: var(--green-light); color: var(--bright-green); }
+    .col-30 .nextstep-item:hover .nextstep-num { background: var(--teal); color: #fff; }
+    .col-36 .nextstep-item:hover .nextstep-num { background: var(--bright-green); color: #fff; }
+    .nextstep-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--deep-navy);
+      margin-bottom: 2px;
+      transition: color 0.15s ease;
+    }
+    .col-30 .nextstep-item:hover .nextstep-title { color: var(--teal); }
+    .col-36 .nextstep-item:hover .nextstep-title { color: var(--bright-green); }
+    .nextstep-desc  { font-size: 12px; color: var(--slate-gray); line-height: 1.5; }
+
+    /* ── RESOURCES ── */
+    .resources-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .resource-card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: var(--shadow-card);
+      padding: 18px 20px;
+      border-top: 3px solid var(--border);
+    }
+    .resource-card.res-a { border-top-color: var(--teal); }
+    .resource-card.res-b { border-top-color: var(--bright-green); }
+    .resource-card.res-c { border-top-color: var(--orange); }
+    .resource-card-title {
+      font-family: 'Merriweather', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--deep-navy);
+      margin-bottom: 12px;
+    }
+    .resource-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .resource-list li {
+      font-size: 12px;
+      color: var(--slate-gray);
+      line-height: 1.45;
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+      padding-left: 0;
+      transition: color 0.15s ease, padding-left 0.15s ease;
+    }
+    .resource-list li:hover { color: var(--deep-navy); padding-left: 4px; }
+    .resource-list li::before {
+      content: '·';
+      color: var(--teal);
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: content 0.15s ease, opacity 0.15s ease;
+    }
+    .res-b .resource-list li::before { color: var(--bright-green); }
+    .res-c .resource-list li::before { color: var(--orange); }
+    .resource-list li:hover::before { content: '→'; }
+
+    /* ── FOOTER ── */
+    .report-footer {
+      background: var(--deep-navy);
+      padding: 52px 32px;
+      text-align: center;
+    }
+    .footer-lockup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .footer-lockup-icon { height: 28px; width: auto; opacity: 0.85; flex-shrink: 0; }
+    .footer-lockup-name {
+      font-family: 'Merriweather', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .footer-lockup-by { font-size: 11px; color: rgba(255,255,255,0.5); }
+    .footer-lockup-separator {
+      width: 1px;
+      height: 32px;
+      background: rgba(255,255,255,0.15);
+      margin: 0 4px;
+    }
+    .footer-cta-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.65;
+      max-width: 480px;
+      margin: 0 auto 24px;
+    }
+    .footer-cta-text strong { color: #fff; }
+    .footer-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 13px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.18s;
+    }
+    .footer-cta-btn:hover { background: var(--teal-hover); }
+    .footer-divider { width: 40px; height: 1px; background: rgba(255,255,255,0.12); margin: 28px auto; }
+    .footer-small { font-size: 11px; color: rgba(255,255,255,0.3); }
+
+    /* ── STICKY JUMP BAR ── */
+    .sticky-jump {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 50;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+    .sticky-jump.visible { opacity: 1; transform: none; pointer-events: all; }
+    .sticky-jump-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--deep-navy);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(27,58,95,0.35);
+      transition: background 0.18s, transform 0.15s;
+    }
+    .sticky-jump-btn:hover { background: #243f67; transform: translateY(-2px); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Badge shimmer — fires once when card A enters viewport */
+    @keyframes badgeShimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .badge-primary.shimmer-ready {
+      background: linear-gradient(
+        90deg,
+        rgba(42,157,142,0.12) 0%,
+        rgba(42,157,142,0.22) 40%,
+        rgba(255,255,255,0.55) 50%,
+        rgba(42,157,142,0.22) 60%,
+        rgba(42,157,142,0.12) 100%
+      );
+      background-size: 200% auto;
+      animation: badgeShimmer 0.9s ease forwards;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .hero-title { font-size: 26px; }
+      .site-header { padding: 0 16px; }
+      .header-meta { display: none; }
+      .report-main { padding: 32px 16px 60px; }
+      .profile-grid { grid-template-columns: 1fr; }
+      .profile-divider { display: none; }
+      .profile-col { padding: 0; }
+      .profile-col + .profile-col { padding-top: 20px; border-top: 1px solid var(--border); margin-top: 4px; }
+      .transform-arc { grid-template-columns: 1fr; gap: 8px; }
+      .transform-arrow { transform: rotate(90deg); }
+      .pathway-details { grid-template-columns: 1fr; }
+      .nextsteps-grid { grid-template-columns: 1fr; }
+      .resources-grid { grid-template-columns: 1fr; }
+      .sticky-jump { bottom: 16px; right: 16px; }
+      .recommendation-card { padding: 24px 20px; }
+      .rec-title { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── STICKY HEADER ── -->
+<header class="site-header">
+  <a href="index.html" class="header-lockup">
+    <img src="logo_4%20(2)%20(1).png" alt="Enterprise Commons" style="height:32px;width:auto;flex-shrink:0;" />
+    <div class="header-lockup-text">
+      <span class="header-lockup-name">Career Navigator</span>
+      <span class="header-lockup-by">by Enterprise Commons</span>
+    </div>
+  </a>
+  <div class="header-meta">
+    <span>Senior Professional</span>
+    <span class="header-meta-sep">·</span>
+    <span>March 13, 2026</span>
+    <span class="header-meta-sep">·</span>
+    <span>Focused Guidance</span>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<div class="report-hero">
+  <div class="hero-eyebrow">Your Personalized Career Report</div>
+  <h1 class="hero-title">Your Path Forward<br>in the Weather, Water &amp; Climate Sector</h1>
+  <div class="hero-name">Dr. Morgan Ellis</div>
+  <div class="hero-meta">
+    <span>Senior Research Meteorologist</span>
+    <span class="hero-meta-sep">·</span>
+    <span>12+ years experience</span>
+    <span class="hero-meta-sep">·</span>
+    <span>Federal Sector</span>
+  </div>
+</div>
+
+<!-- ── MAIN ── -->
+<main class="report-main">
+
+  <!-- 1. PROFILE -->
+  <section class="report-section" data-delay="0">
+    <div class="section-label">
+      <span class="section-label-text">Your Profile</span>
+      <span class="section-label-line"></span>
+    </div>
+    <div class="card">
+      <div class="profile-grid">
+        <div class="profile-col">
+          <div class="profile-field">
+            <div class="profile-field-label">Career Stage</div>
+            <div class="profile-field-value">Senior Professional (12+ years)</div>
+          </div>
+          <div class="profile-field">
+            <div class="profile-field-label">Current Role</div>
+            <div class="profile-field-value">Senior Research Meteorologist, NOAA / National Weather Service</div>
+          </div>
+          <div class="profile-field">
+            <div class="profile-field-label">Education</div>
+            <div class="profile-field-value">Ph.D. Atmospheric Sciences<br>M.S. Physical Meteorology</div>
+          </div>
+          <div class="profile-field">
+            <div class="profile-field-label">Sector Experience</div>
+            <div class="profile-field-value">Federal Government · Research &amp; Operations</div>
+          </div>
+        </div>
+        <div class="profile-divider"></div>
+        <div class="profile-col">
+          <div class="profile-field-label" style="margin-bottom:12px;">Core Competencies</div>
+          <ul class="competency-list">
+            <li>Ensemble forecasting &amp; severe weather prediction</li>
+            <li>Research team leadership (8-person teams, 4 years)</li>
+            <li>Cross-agency scientific collaboration</li>
+            <li>Fire weather &amp; high-impact event modeling</li>
+            <li>Translating research into operational products</li>
+            <li>Stakeholder communication across disciplines</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. QUESTION -->
+  <section class="report-section" data-delay="60">
+    <div class="section-label">
+      <span class="section-label-text">Your Question</span>
+      <span class="section-label-line"></span>
+    </div>
+    <div class="question-card">
+      <div class="question-eyebrow">What you asked Career Navigator</div>
+      <p class="question-text">"I've spent 12 years in federal research and have led teams for the past four. I want to move into a divisional director or program manager role. The science is in my blood, but I've realized I create more impact by developing people and shaping programs than running models. How do I make this transition credibly — and how do I compete against candidates who've been on the administrative track longer?"</p>
+    </div>
+  </section>
+
+  <!-- 3. WHERE YOU STAND -->
+  <section class="report-section" data-delay="90">
+    <div class="section-label">
+      <span class="section-label-text">Where You Stand</span>
+      <span class="section-label-line"></span>
+    </div>
+    <div class="card">
+
+      <!-- Understanding Your Career Challenge — always present in report -->
+      <div class="challenge-block">
+        <div class="challenge-block-label">Understanding Your Career Challenge</div>
+        <p class="challenge-block-text">You're seeking to transition from senior technical leadership into a formal director or program manager role — moving from informal influence to institutional authority. The primary challenge isn't your qualifications: it's that your leadership work has happened inside a research identity, making it less legible to hiring decision-makers than candidates who've been on an explicit administrative track. The key is strategic repositioning, not credential-building.</p>
+      </div>
+
+      <!-- Your Competitive Advantages — always present in report, variable count -->
+      <div class="section-label" style="margin-bottom:12px;">
+        <span class="section-label-text">Your Competitive Advantages</span>
+        <span class="section-label-line"></span>
+      </div>
+      <div class="advantages-list">
+        <div class="advantage-item">
+          <div class="advantage-num">01</div>
+          <div>
+            <div class="advantage-title">Rare Technical Credibility</div>
+            <div class="advantage-desc">A Ph.D. and 12 years of operational research gives you a credibility baseline that pure administrators can't match. Senior scientists respect this — it's your most durable leadership asset.</div>
+          </div>
+        </div>
+        <div class="advantage-item">
+          <div class="advantage-num">02</div>
+          <div>
+            <div class="advantage-title">Proven Team Development at Scale</div>
+            <div class="advantage-desc">Four years leading an 8-person research team is substantial experience. The gap isn't what you've done — it's visibility. Your leadership work needs to be legible to decision-makers.</div>
+          </div>
+        </div>
+        <div class="advantage-item">
+          <div class="advantage-num">03</div>
+          <div>
+            <div class="advantage-title">Cross-Agency Trust Networks</div>
+            <div class="advantage-desc">Your collaborative project history means you have internal champions across agencies. Director roles are rarely filled on paper credentials alone — internal endorsements are decisive.</div>
+          </div>
+        </div>
+        <div class="advantage-item">
+          <div class="advantage-num">04</div>
+          <div>
+            <div class="advantage-title">Science-to-Operations Translation</div>
+            <div class="advantage-desc">Your ability to move research into operational products is increasingly what program directors are hired to do — you've been doing it at the individual contributor level, which is exactly the proof point leadership roles require.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. PATHWAYS -->
+  <section class="report-section" data-delay="110">
+    <div class="pathways-wrapper">
+
+    <!-- Intro -->
+    <div class="pathways-intro">
+      <div class="section-label" style="margin-bottom:10px;">
+        <span class="section-label-text">Career Pathways</span>
+        <span class="section-label-line"></span>
+      </div>
+      <p class="section-deck">I've identified three pathways that align with your background, strengths, and career question. Each offers a distinct route forward — review them together before reading the recommendation below.</p>
+    </div>
+
+    <!-- Pathway A -->
+    <div class="pathway-card primary" data-letter="A">
+      <div class="pathway-card-inner">
+      <div class="pathway-header">
+        <div class="pathway-num-title">
+          <div class="pathway-chapter-label">Pathway A</div>
+          <h3 class="pathway-title">Federal Program Manager<br>/ Divisional Director</h3>
+        </div>
+        <span class="pathway-badge badge-primary">Recommended</span>
+      </div>
+      <p class="pathway-body">The most direct path, leveraging your existing track record and internal relationships. Federal science agencies — NOAA, NWS, USGS, NASA — regularly promote senior researchers into program management roles. Your profile is precisely what these positions call for: deep domain expertise plus demonstrated team leadership.</p>
+      <div class="pathway-details">
+        <div class="pathway-detail">
+          <div class="pathway-detail-label">Target Roles</div>
+          <div class="pathway-detail-text">GS-14/15 Program Manager, Branch Chief, Division Director, Research Program Coordinator</div>
+        </div>
+        <div class="pathway-detail">
+          <div class="pathway-detail-label">Why It Fits</div>
+          <div class="pathway-detail-text">Internal track means your credibility is already established. Your cross-agency network gives you an unusual number of potential internal sponsors.</div>
+        </div>
+        <div class="pathway-detail">
+          <div class="pathway-detail-label">Timeline</div>
+          <div class="pathway-detail-text">6–18 months with deliberate positioning; SES CDP can create a structured 18-month pathway</div>
+        </div>
+        <div class="pathway-detail">
+          <div class="pathway-detail-label">Key Consideration</div>
+          <div class="pathway-detail-text">Federal hiring moves slowly. Running a parallel external search at month 6 creates productive leverage without burning bridges.</div>
+        </div>
+      </div>
+      <div class="pathway-actions">
+        <div class="pathway-actions-label">Immediate Actions</div>
+        <ul class="pathway-actions-list">
+          <li>Apply to the SES Candidate Development Program — next cohort deadlines are typically May and September</li>
+          <li>Request a career conversation with your division chief or a director you respect within 30 days</li>
+          <li>Identify 2–3 acting or detail opportunities that would put you in a program-level seat this year</li>
+        </ul>
+      </div>
+      </div>
+    </div>
+
+    <!-- Pathway B -->
+    <div class="pathway-card alt-b" data-letter="B">
+      <div class="pathway-card-inner">
+      <div class="pathway-header">
+        <div class="pathway-num-title">
+          <div class="pathway-chapter-label">Pathway B</div>
+          <h3 class="pathway-title">Research Institute or<br>University Center Director</h3>
+        </div>
+        <span class="pathway-badge badge-alt">Alternative</span>
+      </div>
+      <p class="pathway-body">National centers and university-affiliated research programs actively recruit senior federal scientists who want to move into leadership without leaving the science ecosystem. These roles offer more agility than federal positions and stronger external visibility — publishing, grants, and community engagement become part of the job description.</p>
+      <div class="pathway-details">
+        <div class="pathway-detail">
+          <div class="pathway-detail-label">Target Organizations</div>
+          <div class="pathway-detail-text">UCAR/NCAR, CIRES, CIMSS, JCSDA, NOAA cooperative institutes, university atmospheric science departments</div>
+        </div>
+        <div class="pathway-detail">
+          <div class="pathway-detail-label">Why It Fits</div>
+          <div class="pathway-detail-text">Research credentials plus leadership track record is the exact profile these centers seek. You maintain scientific identity while gaining institutional authority.</div>
+        </div>
+      </div>
+      <div class="pathway-actions">
+        <div class="pathway-actions-label">Immediate Actions</div>
+        <ul class="pathway-actions-list">
+          <li>Monitor UCAR, CIRES, and CIMSS job boards — director searches typically run 6–9 months</li>
+          <li>Build visibility by contributing to community science planning documents (decadal surveys, NOAA program reviews)</li>
+        </ul>
+      </div>
+      </div>
+    </div>
+
+    <!-- Pathway C -->
+    <div class="pathway-card alt-c" data-letter="C">
+      <div class="pathway-card-inner">
+      <div class="pathway-header">
+        <div class="pathway-num-title">
+          <div class="pathway-chapter-label">Pathway C</div>
+          <h3 class="pathway-title">Science-Policy Bridge<br>/ Advisory Leadership</h3>
+        </div>
+        <span class="pathway-badge badge-third">Longer-term</span>
+      </div>
+      <p class="pathway-body">Roles at the intersection of science and policy — OSTP, NOAA policy offices, interagency working groups, or science advisor positions — offer significant institutional influence. Publications alone won't get you there, but testimony, task force leadership, and congressional engagement will. Best pursued after establishing Pathway A credentials.</p>
+      <div class="pathway-details">
+        <div class="pathway-detail">
+          <div class="pathway-detail-label">Target Roles</div>
+          <div class="pathway-detail-text">OSTP Fellow, NOAA Science Advisor, NAS committee leadership, interagency liaison positions</div>
+        </div>
+        <div class="pathway-detail">
+          <div class="pathway-detail-label">Build Toward It</div>
+          <div class="pathway-detail-text">A 2–3 year federal director stint positions you strongly for science-policy roles — pursue in parallel with Pathway A</div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    </div><!-- /pathways-wrapper -->
+  </section>
+
+  <!-- 5. RECOMMENDATION -->
+  <section id="recommendation" class="report-section" data-delay="130">
+    <div class="section-label">
+      <span class="section-label-text">Career Navigator's Recommendation</span>
+      <span class="section-label-line"></span>
+    </div>
+    <div class="recommendation-card">
+      <div class="rec-eyebrow">Based on your profile and career question</div>
+      <h2 class="rec-title">Pursue Pathway A now — activate Pathway B as a parallel track at month 6</h2>
+      <p class="rec-body">Your strongest asset right now is internal credibility that external candidates simply can't match. The SES CDP is the most direct route to federal director authority, and your cross-agency network gives you an unusual number of potential sponsors. Don't wait for a vacancy — initiate a conversation with your division leadership this month. If federal timelines stall, your profile is genuinely competitive for research center director roles, which gives you real leverage and a productive alternative path.</p>
+      <div class="rec-points">
+        <div class="rec-point">
+          <div class="rec-point-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div class="rec-point-title">Rebrand your narrative — today</div>
+            <div class="rec-point-desc">Update your federal CV and LinkedIn to lead with leadership outcomes: team size, program scope, budget. Move publications to a secondary section.</div>
+          </div>
+        </div>
+        <div class="rec-point">
+          <div class="rec-point-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div class="rec-point-title">Find a sponsor, not just a mentor</div>
+            <div class="rec-point-desc">Identify one senior leader who will actively advocate for you in rooms you're not in. A sponsor is worth more than ten mentors at this career stage.</div>
+          </div>
+        </div>
+        <div class="rec-point">
+          <div class="rec-point-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div class="rec-point-title">Create a visible leadership record</div>
+            <div class="rec-point-desc">Chair a working group, lead a cross-agency initiative, or write a program planning document. This is what directors' CVs look like — start building yours now.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. NEXT STEPS -->
+  <section class="report-section" data-delay="150">
+    <div class="section-label">
+      <span class="section-label-text">Your Action Plan</span>
+      <span class="section-label-line"></span>
+    </div>
+    <div class="nextsteps-grid">
+      <div class="nextstep-col col-30">
+        <div class="nextstep-col-header">
+          <div class="nextstep-badge badge-30days">⚡</div>
+          <div>
+            <div class="nextstep-col-title">Next 30 Days</div>
+            <div class="nextstep-col-sub">Immediate actions</div>
+          </div>
+        </div>
+        <ul class="nextstep-list col-30">
+          <li class="nextstep-item">
+            <div class="nextstep-num">1</div>
+            <div>
+              <div class="nextstep-title">Reframe your federal CV</div>
+              <div class="nextstep-desc">Lead with leadership outcomes — team size, program scope, budget managed. Move publications to a secondary section.</div>
+            </div>
+          </li>
+          <li class="nextstep-item">
+            <div class="nextstep-num">2</div>
+            <div>
+              <div class="nextstep-title">Schedule a career conversation</div>
+              <div class="nextstep-desc">Request a direct conversation with your division chief about director-track opportunities within the next 30 days.</div>
+            </div>
+          </li>
+          <li class="nextstep-item">
+            <div class="nextstep-num">3</div>
+            <div>
+              <div class="nextstep-title">Research the SES CDP</div>
+              <div class="nextstep-desc">Download application materials, check your agency's next cohort deadline, and identify an ECQ writing resource.</div>
+            </div>
+          </li>
+          <li class="nextstep-item">
+            <div class="nextstep-num">4</div>
+            <div>
+              <div class="nextstep-title">Name your sponsor candidate</div>
+              <div class="nextstep-desc">Identify one senior leader (not your supervisor) who could advocate for you internally. Schedule a meeting this month.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="nextstep-col col-36">
+        <div class="nextstep-col-header">
+          <div class="nextstep-badge badge-36mo">🗺️</div>
+          <div>
+            <div class="nextstep-col-title">3–6 Months</div>
+            <div class="nextstep-col-sub">Strategic positioning</div>
+          </div>
+        </div>
+        <ul class="nextstep-list col-36">
+          <li class="nextstep-item">
+            <div class="nextstep-num">1</div>
+            <div>
+              <div class="nextstep-title">Apply to SES CDP or pursue an acting detail</div>
+              <div class="nextstep-desc">Submit your CDP application or formally request a 60–90 day acting assignment in a program-level role.</div>
+            </div>
+          </li>
+          <li class="nextstep-item">
+            <div class="nextstep-num">2</div>
+            <div>
+              <div class="nextstep-title">Establish external visibility</div>
+              <div class="nextstep-desc">Contribute to a community planning document, join a professional society committee, or present at a program review.</div>
+            </div>
+          </li>
+          <li class="nextstep-item">
+            <div class="nextstep-num">3</div>
+            <div>
+              <div class="nextstep-title">Build your leadership portfolio</div>
+              <div class="nextstep-desc">Document 5 leadership case studies with measurable outcomes — team impact, program scope, decisions made. These become your interview answers.</div>
+            </div>
+          </li>
+          <li class="nextstep-item">
+            <div class="nextstep-num">4</div>
+            <div>
+              <div class="nextstep-title">Activate the parallel track</div>
+              <div class="nextstep-desc">Begin monitoring UCAR, CIRES, and cooperative institute leadership vacancies. Reach out to 2 sitting directors for informational conversations.</div>
+            </div>
+          </li>
+          <li class="nextstep-item">
+            <div class="nextstep-num">5</div>
+            <div>
+              <div class="nextstep-title">Conduct a 90-day progress review</div>
+              <div class="nextstep-desc">Assess which pathway is gaining traction. Double down on what's working; adjust where it isn't.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. RESOURCES -->
+  <section class="report-section" data-delay="170">
+    <div class="section-label">
+      <span class="section-label-text">Additional Resources</span>
+      <span class="section-label-line"></span>
+    </div>
+    <div class="resources-grid">
+      <div class="resource-card res-a">
+        <div class="resource-card-title">Leadership Development</div>
+        <ul class="resource-list">
+          <li>SES Candidate Development Program (OPM)</li>
+          <li>Federal Executive Institute programs</li>
+          <li>NOAA Leadership Competency Model</li>
+          <li>Maxwell School Executive Education (MPA)</li>
+        </ul>
+      </div>
+      <div class="resource-card res-b">
+        <div class="resource-card-title">Professional Networks</div>
+        <ul class="resource-list">
+          <li>AMS Board on Enterprise Development</li>
+          <li>AGU Leadership &amp; Policy programs</li>
+          <li>UCAR Community Programs (volunteer leadership)</li>
+          <li>NOAA Science Advisory Board committees</li>
+        </ul>
+      </div>
+      <div class="resource-card res-c">
+        <div class="resource-card-title">Visibility &amp; Positioning</div>
+        <ul class="resource-list">
+          <li>NAS decadal survey working groups</li>
+          <li>Interagency NOAA–NASA–USGS collaborations</li>
+          <li>IPA assignment &amp; Boren Fellowship opportunities</li>
+          <li>COMPASS science communication training</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="report-footer">
+  <div class="footer-lockup">
+    <img src="logo-white.svg" alt="Enterprise Commons" class="footer-lockup-icon" />
+    <div class="footer-lockup-separator"></div>
+    <div style="display:flex;flex-direction:column;gap:2px;">
+      <span class="footer-lockup-name">Career Navigator</span>
+      <span class="footer-lockup-by">by Enterprise Commons</span>
+    </div>
+  </div>
+  <p class="footer-cta-text">
+    <strong>Want Career Navigator for your members?</strong><br>
+    Enterprise Commons partners with scientific societies and member-based associations to deliver AI-powered career guidance grounded in your field's domain knowledge — not generic internet training data.
+  </p>
+  <a href="https://enterprisecommons.ai/contact" class="footer-cta-btn" target="_blank" rel="noopener">
+    Talk to Enterprise Commons
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+  <div class="footer-divider"></div>
+  <div class="footer-small">© 2026 Enterprise Commons &nbsp;·&nbsp; Your data is confidential and will not be used to train AI models.</div>
+</footer>
+
+<!-- ── STICKY JUMP BAR ── -->
+<div class="sticky-jump" id="sticky-jump">
+  <button class="sticky-jump-btn" onclick="document.getElementById('recommendation').scrollIntoView({behavior:'smooth'})">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    Jump to Recommendation
+  </button>
+</div>
+
+<script>
+  // Scroll-triggered section reveals
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var delay = parseInt(entry.target.getAttribute('data-delay') || '0', 10);
+        setTimeout(function() { entry.target.classList.add('revealed'); }, delay);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.report-section').forEach(function(el) { revealObserver.observe(el); });
+
+  // Badge shimmer — fires once when Pathway A card enters viewport
+  var primaryCard = document.querySelector('.pathway-card.primary');
+  var primaryBadge = primaryCard ? primaryCard.querySelector('.badge-primary') : null;
+  if (primaryCard && primaryBadge) {
+    var badgeObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          setTimeout(function() { primaryBadge.classList.add('shimmer-ready'); }, 400);
+          badgeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    badgeObserver.observe(primaryCard);
+  }
+
+  // Rec-point icon pulse — staggered fire when recommendation card enters viewport
+  var recCard = document.querySelector('.recommendation-card');
+  if (recCard) {
+    var iconPulseObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var icons = recCard.querySelectorAll('.rec-point-icon');
+          icons.forEach(function(icon, i) {
+            setTimeout(function() {
+              icon.classList.add('pulse');
+              icon.addEventListener('animationend', function() {
+                icon.classList.remove('pulse');
+              }, { once: true });
+            }, i * 160);
+          });
+          iconPulseObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    iconPulseObserver.observe(recCard);
+  }
+
+  // Sticky jump bar — shows after hero, hides when recommendation is on screen
+  var jumpBar   = document.getElementById('sticky-jump');
+  var recEl     = document.getElementById('recommendation');
+  var heroShown = false;
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 320) { heroShown = true; }
+  });
+
+  if (recEl) {
+    var jumpObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          jumpBar.classList.remove('visible');
+        } else if (heroShown && window.scrollY > 320) {
+          jumpBar.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+    jumpObserver.observe(recEl);
+  }
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 400 && recEl) {
+      var rect = recEl.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) {
+        jumpBar.classList.add('visible');
+      }
+    }
+  });
+</script>
+<script>
+/* =========================================================
+   DYNAMIC RESULTS RENDERING
+   When ?session=SESSION_ID is in the URL and WORKER_URL is
+   configured, polls the Cloudflare Worker for structured JSON
+   and populates the page. Falls back to static prototype data
+   if no session is present or WORKER_URL is empty.
+========================================================= */
+var WORKER_URL = ''; // Set to your Cloudflare Worker URL when Stage 4 is deployed
+
+(function () {
+  if (!WORKER_URL) return; // simulation mode — static data stays
+
+  var params    = new URLSearchParams(window.location.search);
+  var sessionId = params.get('session');
+  if (!sessionId) return; // no session — keep static data
+
+  var pollInterval;
+  var attempts = 0;
+  var maxAttempts = 120; // 10 minutes at 5s intervals
+
+  pollInterval = setInterval(function () {
+    attempts++;
+    if (attempts > maxAttempts) { clearInterval(pollInterval); return; }
+
+    fetch(WORKER_URL + '/results/' + encodeURIComponent(sessionId))
+      .then(function (res) { return res.json(); })
+      .then(function (json) {
+        if (json.status === 'ready' && json.data) {
+          clearInterval(pollInterval);
+          populatePage(json.data);
+        }
+      })
+      .catch(function () { /* keep polling */ });
+  }, 5000);
+
+  function setText(selector, value) {
+    var el = document.querySelector(selector);
+    if (el && value) el.textContent = value;
+  }
+
+  function setHTML(selector, value) {
+    var el = document.querySelector(selector);
+    if (el && value) el.innerHTML = value;
+  }
+
+  function populatePage(d) {
+    // ── Hero / Profile ──────────────────────────────────────
+    setText('.hero-name',         d.person_name);
+    setText('.hero-role',         d.current_role);
+    setText('.hero-org',          d.organization);
+    setText('.profile-career-stage',   d.career_stage);
+    setText('.profile-years',          d.years_experience);
+    setText('.profile-sector',         d.sector);
+    setText('.profile-education',      d.education);
+    setText('.profile-career-question', d.career_question);
+
+    // Competencies list
+    if (d.competencies && d.competencies.length) {
+      var compEl = document.querySelector('.profile-competencies');
+      if (compEl) {
+        compEl.innerHTML = d.competencies.map(function (c) {
+          return '<span class="competency-tag">' + escHtml(c) + '</span>';
+        }).join('');
+      }
+    }
+
+    // ── Where You Stand ──────────────────────────────────────
+    setText('.challenge-block .challenge-title', d.challenge_title);
+    setText('.challenge-block .challenge-body',  d.challenge_body);
+
+    if (d.advantages && d.advantages.length) {
+      var advList = document.querySelector('.advantages-list');
+      if (advList) {
+        advList.innerHTML = d.advantages.map(function (a) {
+          return '<li class="advantage-item">' +
+            '<span class="advantage-title">' + escHtml(a.title) + '</span>' +
+            '<span class="advantage-desc">'  + escHtml(a.desc)  + '</span>' +
+            '</li>';
+        }).join('');
+      }
+    }
+
+    // ── Career Pathways ──────────────────────────────────────
+    setText('.pathways-intro', d.pathways_intro);
+
+    if (d.pathways && d.pathways.length) {
+      d.pathways.forEach(function (p) {
+        var card = document.querySelector('.pathway-card[data-letter="' + p.letter + '"]');
+        if (!card) return;
+        var titleEl   = card.querySelector('.pathway-title');
+        var summaryEl = card.querySelector('.pathway-summary');
+        var detailEl  = card.querySelector('.pathway-details');
+        var timelineEl = card.querySelector('.pathway-timeline');
+        var investEl  = card.querySelector('.pathway-investment');
+        if (titleEl)    titleEl.textContent   = p.title;
+        if (summaryEl)  summaryEl.textContent = p.summary;
+        if (detailEl)   detailEl.textContent  = p.details;
+        if (timelineEl) timelineEl.textContent = p.timeline;
+        if (investEl)   investEl.textContent  = p.investment;
+        if (p.success_factors && p.success_factors.length) {
+          var sfList = card.querySelector('.pathway-success-factors');
+          if (sfList) {
+            sfList.innerHTML = p.success_factors.map(function (f) {
+              return '<li>' + escHtml(f) + '</li>';
+            }).join('');
+          }
+        }
+      });
+    }
+
+    // ── Recommendation ───────────────────────────────────────
+    setText('.rec-title', d.recommendation_title);
+    setText('.rec-body',  d.recommendation_body);
+
+    if (d.recommendation_points && d.recommendation_points.length) {
+      var recList = document.querySelector('.rec-points');
+      if (recList) {
+        recList.innerHTML = d.recommendation_points.map(function (r) {
+          return '<div class="rec-point">' +
+            '<span class="rec-point-title">' + escHtml(r.title) + '</span>' +
+            '<span class="rec-point-desc">'  + escHtml(r.desc)  + '</span>' +
+            '</div>';
+        }).join('');
+      }
+    }
+
+    // ── Action Plan ───────────────────────────────────────────
+    if (d.action_plan_30_day && d.action_plan_30_day.length) {
+      var col30 = document.querySelector('.nextstep-col.col-30 .nextstep-list');
+      if (col30) {
+        col30.innerHTML = d.action_plan_30_day.map(function (item) {
+          return '<li class="nextstep-item">' + escHtml(item) + '</li>';
+        }).join('');
+      }
+    }
+
+    if (d.action_plan_3_6_month && d.action_plan_3_6_month.length) {
+      var col36 = document.querySelector('.nextstep-col.col-36 .nextstep-list');
+      if (col36) {
+        col36.innerHTML = d.action_plan_3_6_month.map(function (item) {
+          return '<li class="nextstep-item">' + escHtml(item) + '</li>';
+        }).join('');
+      }
+    }
+
+    // ── Resources ────────────────────────────────────────────
+    if (d.resources) {
+      populateResourceCard('res-a', d.resources.communities);
+      populateResourceCard('res-b', d.resources.learning);
+      populateResourceCard('res-c', d.resources.tools);
+    }
+  }
+
+  function populateResourceCard(cardId, items) {
+    if (!items || !items.length) return;
+    var card = document.querySelector('.resource-card.' + cardId);
+    if (!card) return;
+    var list = card.querySelector('.resource-list');
+    if (list) {
+      list.innerHTML = items.map(function (item) {
+        if (typeof item === 'string') {
+          return '<li class="resource-item">' + escHtml(item) + '</li>';
+        }
+        // item may be {name, url, desc}
+        var link = item.url
+          ? '<a href="' + escAttr(item.url) + '" target="_blank" rel="noopener">' + escHtml(item.name || item) + '</a>'
+          : escHtml(item.name || item);
+        return '<li class="resource-item">' + link +
+          (item.desc ? '<span class="resource-desc">' + escHtml(item.desc) + '</span>' : '') +
+          '</li>';
+      }).join('');
+    }
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function escAttr(str) {
+    return String(str).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,2824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Career Navigator — AI Career Guidance | Enterprise Commons</title>
+
+  <!-- ── SEO: Core Meta ──────────────────────────────────────────────────── -->
+  <meta name="description" content="Personalized AI career guidance for weather, water, and climate professionals. Answer a few questions and receive a free tailored career report in your inbox within 3 minutes." />
+  <meta name="robots" content="index, follow" /><!-- Change to "noindex, nofollow" on staging/prototype environments -->
+  <meta name="author" content="Enterprise Commons" />
+  <meta name="theme-color" content="#2A9D8E" />
+  <link rel="canonical" href="https://enterprisecommons.ai/career-navigator" /><!-- Update to final production URL before launch -->
+
+  <!-- ── SEO: Open Graph (social sharing — Facebook, LinkedIn) ───────────── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Enterprise Commons" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://enterprisecommons.ai/career-navigator" /><!-- Update to final URL -->
+  <meta property="og:title" content="Career Navigator — Free AI Career Guidance for Weather &amp; Climate Professionals" />
+  <meta property="og:description" content="Personalized AI career guidance for weather, water, and climate professionals. Answer a few questions and receive a free tailored career report in your inbox within 3 minutes." />
+  <meta property="og:image" content="https://enterprisecommons.ai/career-navigator/hero-image.png" /><!-- Replace with absolute URL; 1200×630px recommended -->
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Career Navigator by Enterprise Commons — AI-powered career guidance for weather and climate professionals" />
+
+  <!-- ── SEO: Twitter / X Card ───────────────────────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Career Navigator — Free AI Career Guidance for Weather &amp; Climate Professionals" />
+  <meta name="twitter:description" content="Personalized AI career guidance for weather, water, and climate professionals. Answer a few questions and receive a free tailored career report in your inbox within 3 minutes." />
+  <meta name="twitter:image" content="https://enterprisecommons.ai/career-navigator/hero-image.png" /><!-- Replace with absolute URL -->
+  <meta name="twitter:image:alt" content="Career Navigator by Enterprise Commons" />
+
+  <!-- ── SEO: JSON-LD Structured Data ────────────────────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Career Navigator",
+        "description": "Personalized AI career guidance for weather, water, and climate professionals. Submit your profile and receive a free tailored career report delivered to your inbox within 3 minutes.",
+        "url": "https://enterprisecommons.ai/career-navigator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free personalized AI career guidance report"
+        },
+        "provider": {
+          "@type": "Organization",
+          "name": "Enterprise Commons",
+          "url": "https://enterprisecommons.ai",
+          "description": "Knowledge Stewardship in Service of Science"
+        },
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Weather, water, and climate professionals"
+        },
+        "featureList": [
+          "Personalized career report",
+          "AI-powered profile analysis",
+          "Career pathway recommendations",
+          "Email delivery within 3 minutes"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Enterprise Commons",
+            "item": "https://enterprisecommons.ai"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Career Navigator",
+            "item": "https://enterprisecommons.ai/career-navigator"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- ── Performance: Preload hero image (improves Largest Contentful Paint) -->
+  <link rel="preload" as="image" href="hero-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* =========================================================
+       CSS CUSTOM PROPERTIES — EC BRAND
+    ========================================================= */
+    :root {
+      --deep-navy:        #1B3A5F;
+      --teal:             #2A9D8E;
+      --teal-hover:       #24897C;
+      --bright-green:     #80B517;
+      --lime-green:       #95D45E;
+      --orange:           #E8734F;
+      --slate-gray:       #62748D;
+      --background:       #FFFFFF;
+      --light-teal:       #E9F7F5;
+      --secondary-bg:     #F8FAFC;
+      --alt-gray:         #F1F5F9;
+      --card:             #FFFFFF;
+      --border:           #E1E7EF;
+      --input-border:     #E1E7EF;
+      --ring:             #2A9D8E;
+      --footer-bg:        #1B3A5F;
+      --shadow-card:      0 2px 4px rgba(27,58,95,0.08), 0 4px 16px rgba(27,58,95,0.06);
+      --shadow-card-hover:0 8px 16px rgba(27,58,95,0.12), 0 16px 32px rgba(27,58,95,0.10);
+      --radius:           8px;
+      --radius-card:      12px;
+    }
+
+    /* =========================================================
+       RESET & BASE
+    ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      color: var(--slate-gray);
+      background: var(--background);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       IMPROVEMENT 1 — Screen Transitions
+    ========================================================= */
+    .screen {
+      display: none;
+    }
+    .screen.active {
+      display: block;
+      animation: screenEnter 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes screenEnter {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =========================================================
+       IMPROVEMENT 2 — Hero staggered entrance animations
+    ========================================================= */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hero elements animate in on page load — screen-welcome is active by default */
+    #screen-welcome .hero-product-name {
+      opacity: 0;
+      animation: fadeUp 0.60s 0.10s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    #screen-welcome .hero-content h1 {
+      opacity: 0;
+      animation: fadeUp 0.75s 0.28s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    #screen-welcome .hero-content > p {
+      opacity: 0;
+      animation: fadeUp 0.65s 0.48s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    #screen-welcome .welcome-card-wrap {
+      opacity: 0;
+      animation: fadeUp 0.65s 0.70s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    /* =========================================================
+       IMPROVEMENT 3 — Animated hero eyebrow pill (shimmer)
+    ========================================================= */
+    @keyframes eyebrow-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(42,157,142,0); }
+      50%       { box-shadow: 0 0 0 6px rgba(42,157,142,0.18); }
+    }
+
+    /* =========================================================
+       STICKY HEADER
+    ========================================================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      box-shadow: 0 1px 8px rgba(27,58,95,0.07);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .header-lockup-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .header-lockup-name {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--deep-navy);
+      line-height: 1.2;
+    }
+    .header-lockup-by {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--slate-gray);
+      letter-spacing: 0.02em;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+    .site-footer {
+      background: var(--footer-bg);
+      padding: 32px 40px;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .site-footer p {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.80);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .site-footer a {
+      color: rgba(255,255,255,0.90);
+      text-decoration: none;
+    }
+
+    .site-footer a:hover { text-decoration: underline; }
+
+    .site-footer .footer-tagline {
+      font-size: 13px;
+      color: rgba(255,255,255,0.60);
+      margin-bottom: 20px;
+    }
+
+    .footer-logo {
+      display: block;
+      margin: 0 auto;
+      width: 130px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* =========================================================
+       SCREEN 1 — WELCOME
+    ========================================================= */
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 400px;
+      background-image: url('hero-image.png');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* IMPROVEMENT 4 — Hero overlay: diagonal gradient */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(27, 58, 95, 0.92) 0%,
+        rgba(27, 58, 95, 0.80) 50%,
+        rgba(42, 157, 142, 0.68) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 24px;
+      max-width: 700px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(42,157,142,0.20);
+      color: #2A9D8E;
+      border: 1px solid rgba(42,157,142,0.40);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-content h1 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 52px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-family: 'Inter', sans-serif;
+      font-size: 20px;
+      color: rgba(255,255,255,0.90);
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Welcome card — overlapping hero */
+    .welcome-card-wrap {
+      background: var(--secondary-bg);
+      padding-bottom: 64px;
+    }
+
+    .welcome-card {
+      max-width: 720px;
+      margin: -40px auto 0;
+      background: #fff;
+      border-radius: var(--radius-card);
+      padding: 40px 48px;
+      box-shadow: var(--shadow-card-hover);
+      position: relative;
+      z-index: 10;
+    }
+
+    .confidential-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(42,157,142,0.12);
+      color: var(--teal);
+      border: 1px solid rgba(42,157,142,0.30);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+
+    .confidential-badge svg { flex-shrink: 0; }
+
+    .welcome-card h2 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--deep-navy);
+      margin-bottom: 14px;
+    }
+
+    .welcome-card > p {
+      font-size: 16px;
+      color: var(--slate-gray);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 600px;
+    }
+
+    .features-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    /* IMPROVEMENT 5 — Feature cards hover lift */
+    .feature-card {
+      background: var(--secondary-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 24px 20px;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      cursor: default;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-card-hover);
+      border-color: rgba(42,157,142,0.30);
+    }
+
+    .feature-icon-wrap {
+      width: 44px;
+      height: 44px;
+      background: var(--light-teal);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .feature-icon-wrap svg { flex-shrink: 0; }
+
+    .feature-card-title {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--deep-navy);
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      font-size: 13px;
+      color: var(--slate-gray);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .welcome-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 0 24px;
+    }
+
+    .time-estimate {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--slate-gray);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* IMPROVEMENT 6 — Button hover: gradient sweep effect */
+    .btn-primary {
+      display: inline-block;
+      background: var(--teal);
+      background-image: linear-gradient(to right, var(--teal) 0%, var(--teal-hover) 50%, var(--teal) 100%);
+      background-size: 200% auto;
+      background-position: left center;
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      padding: 12px 28px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-position 0.4s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      line-height: 1.4;
+    }
+    .btn-primary:hover {
+      background-position: right center;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(42,157,142,0.35);
+    }
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+    .btn-cta {
+      font-size: 17px;
+      padding: 14px 36px;
+    }
+
+    /* Footer strip on welcome screen */
+    .welcome-footer-strip {
+      background: var(--teal);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: -1px;
+    }
+
+    .welcome-footer-strip p {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #fff;
+      margin: 0;
+    }
+
+    .welcome-footer-strip img {
+      width: 100px;
+      height: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    /* =========================================================
+       SCREEN 2 — FORM
+    ========================================================= */
+    /* Step indicator */
+    .step-indicator-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      position: sticky;
+      top: 80px;
+      z-index: 90;
+    }
+
+    .step-indicator {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      overflow-x: auto;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+    }
+
+    .step-dot {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--alt-gray);
+      color: var(--slate-gray);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* IMPROVEMENT 9 — step dot active state with subtle ring */
+    .step-dot.active {
+      background: var(--teal);
+      color: #fff;
+      box-shadow: 0 0 0 3px rgba(42,157,142,0.20);
+    }
+
+    .step-dot.complete {
+      background: var(--teal);
+      color: #fff;
+    }
+
+    .step-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--slate-gray);
+      font-weight: 500;
+    }
+
+    .step-label.active {
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    /* IMPROVEMENT 9 — Upgraded step connector with progress fill */
+    .step-connector {
+      flex: 1;
+      min-width: 16px;
+      height: 2px;
+      background: var(--border);
+      margin: 0 6px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .step-connector::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--teal);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .step-connector.complete::after {
+      transform: scaleX(1);
+    }
+
+    /* Confidential banner */
+    .confidential-banner {
+      background: var(--light-teal);
+      border-left: 4px solid var(--teal);
+      padding: 16px 24px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .confidential-banner svg { flex-shrink: 0; margin-top: 2px; }
+
+    .confidential-banner-text strong {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--deep-navy);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .confidential-banner-text p {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--slate-gray);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* Form container */
+    .form-container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+
+    /* IMPROVEMENT 7 — Dot grid texture on form background */
+    #screen-form {
+      background-color: var(--secondary-bg);
+      background-image: radial-gradient(circle, #C8D0DC 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    /* IMPROVEMENT 8 — Form section reveal animations */
+    .form-section {
+      background: #fff;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.55s cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 0.22s ease;
+    }
+    .form-section.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .form-section.revealed:hover {
+      box-shadow: var(--shadow-card-hover);
+    }
+    /* Stagger by section order */
+    .form-section:nth-child(1) { transition-delay: 0ms; }
+    .form-section:nth-child(2) { transition-delay: 60ms; }
+    .form-section:nth-child(3) { transition-delay: 120ms; }
+    .form-section:nth-child(4) { transition-delay: 180ms; }
+    .form-section:nth-child(5) { transition-delay: 0ms; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    /* IMPROVEMENT 8 — Section badge spring pop when revealed */
+    .section-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transform: scale(0.5);
+      opacity: 0;
+      transition: transform 0.4s 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  opacity 0.3s 0.15s ease;
+    }
+    .form-section.revealed .section-badge {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .section-header h2 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--deep-navy);
+    }
+
+    .section-intro {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--slate-gray);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      margin-top: -12px;
+    }
+
+    /* Form fields */
+    .field-group {
+      margin-bottom: 22px;
+    }
+
+    .field-group:last-child { margin-bottom: 0; }
+
+    .field-label {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--deep-navy);
+      margin-bottom: 7px;
+    }
+
+    .required-star {
+      color: #D61434;
+      margin-left: 2px;
+    }
+
+    .field-input,
+    .field-select,
+    .field-textarea {
+      width: 100%;
+      border: 1px solid var(--input-border);
+      border-radius: var(--radius);
+      padding: 11px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--deep-navy);
+      background: #fff;
+      transition: border-color 0.18s, box-shadow 0.18s;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+    }
+
+    .field-input::placeholder,
+    .field-textarea::placeholder {
+      color: #A0AABE;
+    }
+
+    .field-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2362748D' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 38px;
+    }
+
+    .field-textarea {
+      resize: vertical;
+      min-height: 84px;
+    }
+
+    .field-input:focus,
+    .field-select:focus,
+    .field-textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(42,157,142,0.15);
+    }
+
+    .field-input.error,
+    .field-select.error,
+    .field-textarea.error {
+      border-color: #D61434;
+      box-shadow: 0 0 0 3px rgba(214,20,52,0.12);
+    }
+
+    .field-helper {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--slate-gray);
+      margin-top: 5px;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .field-error {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #D61434;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .field-error.visible { display: block; }
+
+    .char-counter {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--slate-gray);
+      text-align: right;
+      margin-top: 5px;
+    }
+
+    /* Conditional fields */
+    .conditional-field { display: none; }
+    .conditional-field.visible { display: block; }
+
+    /* Radio depth cards */
+    .radio-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .radio-card {
+      position: relative;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 20px 20px 20px 50px;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s;
+      background: #fff;
+    }
+
+    .radio-card:has(input:checked) {
+      border-color: var(--teal);
+      background: rgba(42,157,142,0.05);
+    }
+
+    .radio-card input[type="radio"] {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      accent-color: var(--teal);
+      cursor: pointer;
+    }
+
+    .radio-card-title {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--deep-navy);
+      margin-bottom: 7px;
+    }
+
+    .radio-card-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--slate-gray);
+      line-height: 1.55;
+    }
+
+    /* Consent items */
+    .consent-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 14px;
+      padding: 16px 18px;
+      background: var(--secondary-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .consent-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 1px;
+      accent-color: var(--teal);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .consent-item-text { flex: 1; }
+
+    .consent-item-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--deep-navy);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .consent-item-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--slate-gray);
+      margin-top: 3px;
+    }
+
+    .consent-optional-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--slate-gray);
+      background: var(--alt-gray);
+      border-radius: 4px;
+      padding: 2px 7px;
+      margin-left: 7px;
+      vertical-align: middle;
+    }
+
+    /* Submit button */
+    .btn-submit {
+      width: 100%;
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      padding: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.18s ease;
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover { background: var(--teal-hover); }
+
+    /* IMPROVEMENT 10 — Section 4 "Your Question" — distinctive navy treatment */
+    #section-4 {
+      background: var(--deep-navy);
+      border: none;
+      border-top: 3px solid var(--orange);
+    }
+    #section-4 .section-header h2 {
+      color: #FFFFFF;
+    }
+    #section-4 .section-badge {
+      background: var(--orange);
+    }
+    #section-4 .section-intro {
+      color: rgba(255,255,255,0.75);
+    }
+    #section-4 .field-label {
+      color: rgba(255,255,255,0.90);
+    }
+    #section-4 .required-star {
+      color: var(--orange);
+    }
+    #section-4 .field-textarea {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+      color: #FFFFFF;
+    }
+    #section-4 .field-textarea::placeholder {
+      color: rgba(255,255,255,0.38);
+    }
+    #section-4 .field-textarea:focus {
+      border-color: rgba(42,157,142,0.70);
+      box-shadow: 0 0 0 3px rgba(42,157,142,0.18);
+    }
+    #section-4 .field-helper {
+      color: rgba(255,255,255,0.60);
+    }
+    #section-4 .char-counter {
+      color: rgba(255,255,255,0.50);
+    }
+    #section-4 .field-error {
+      color: #F4A261;
+    }
+
+    /* =========================================================
+       SCREEN 3 — LOADER
+    ========================================================= */
+    .loader-screen-body {
+      min-height: calc(100vh - 80px);
+      background: var(--light-teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+
+    .loader-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 52px 44px;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .loader-card h2 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--deep-navy);
+      margin-bottom: 12px;
+    }
+
+    .loader-card .loader-subtext {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: var(--slate-gray);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    /* IMPROVEMENT 12 — Pipeline CSS */
+    .pipeline {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin: 32px 0 36px;
+    }
+
+    .pipeline-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .pipeline-stage-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--alt-gray);
+      color: var(--slate-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2.5px solid var(--border);
+      transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+    }
+
+    @keyframes stage-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(42,157,142,0); }
+      50%       { box-shadow: 0 0 0 8px rgba(42,157,142,0.15); }
+    }
+
+    .pipeline-stage.active .pipeline-stage-icon {
+      background: var(--light-teal);
+      color: var(--teal);
+      border-color: var(--teal);
+      animation: stage-pulse 1.4s ease-in-out infinite;
+    }
+    .pipeline-stage.complete .pipeline-stage-icon {
+      background: var(--teal);
+      color: #fff;
+      border-color: var(--teal);
+      animation: none;
+    }
+
+    .pipeline-stage-num {
+      font-family: 'Merriweather', serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--slate-gray);
+      letter-spacing: 0.05em;
+      transition: color 0.4s ease;
+    }
+    .pipeline-stage.active .pipeline-stage-num,
+    .pipeline-stage.complete .pipeline-stage-num {
+      color: var(--teal);
+    }
+
+    .pipeline-stage-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--slate-gray);
+      text-align: center;
+      line-height: 1.3;
+      transition: color 0.4s ease;
+    }
+    .pipeline-stage.active .pipeline-stage-label,
+    .pipeline-stage.complete .pipeline-stage-label {
+      color: var(--deep-navy);
+    }
+
+    .pipeline-connector-wrap {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding-bottom: 40px;
+      flex: 1;
+      max-width: 60px;
+    }
+    .pipeline-connector-track {
+      flex: 1;
+      height: 2.5px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .pipeline-connector-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--teal);
+      border-radius: 2px;
+      transition: width 0.6s ease;
+    }
+    .pipeline-connector-fill.filled {
+      width: 100%;
+    }
+    .pipeline-arrow {
+      color: var(--border);
+      flex-shrink: 0;
+      transition: color 0.4s ease;
+    }
+    .pipeline-connector-wrap.complete .pipeline-arrow {
+      color: var(--teal);
+    }
+
+    .loader-progress-bar {
+      width: 100%;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .loader-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--bright-green));
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    .loader-message {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--teal);
+      min-height: 22px;
+      transition: opacity 0.4s ease;
+    }
+
+    .loader-message.fade { opacity: 0; }
+
+    .loader-pct {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: var(--slate-gray);
+      text-align: right;
+      margin-top: 5px;
+      margin-bottom: 24px;
+    }
+
+    .fun-fact-strip {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(42,157,142,0.07);
+      border: 1px solid rgba(42,157,142,0.2);
+      border-radius: 8px;
+      padding: 14px 18px;
+      text-align: left;
+      margin-bottom: 28px;
+      transition: opacity 0.42s ease;
+    }
+    .fun-fact-strip.fade-out-fact { opacity: 0; }
+    .fun-fact-strip-icon { font-size: 18px; flex-shrink: 0; line-height: 1.5; margin-top: 1px; }
+    .fun-fact-strip-body { flex: 1; }
+    .fun-fact-strip-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 5px;
+    }
+    .fun-fact-strip-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      color: var(--slate-gray);
+      line-height: 1.65;
+    }
+
+    /* =========================================================
+       SCREEN 4 — CONFIRMATION
+    ========================================================= */
+    .confirmation-body {
+      min-height: calc(100vh - 80px);
+      background: var(--light-teal);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 56px 24px;
+    }
+
+    /* IMPROVEMENT 14 — Confirmation card entrance animation */
+    .confirmation-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 52px 52px 44px;
+      max-width: 580px;
+      width: 100%;
+      text-align: center;
+      animation: screenEnter 0.45s 0.1s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    /* IMPROVEMENT 11 — Animated SVG checkmark */
+    .checkmark-wrap {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 32px;
+    }
+    .checkmark-svg { width: 88px; height: 88px; }
+
+    @keyframes ck-circle-draw {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes ck-tick-draw {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes ck-bg-scale {
+      from { transform: scale(0.4); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+
+    .ck-bg {
+      transform-origin: 40px 40px;
+      animation: ck-bg-scale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      opacity: 0;
+    }
+    .ck-circle {
+      animation: ck-circle-draw 0.6s 0.2s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .ck-tick {
+      animation: ck-tick-draw 0.45s 0.65s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    .confirmation-card h2 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--deep-navy);
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+
+    .confirmation-card .confirm-email-line {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: var(--slate-gray);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .confirm-email-addr {
+      font-weight: 700;
+      color: var(--deep-navy);
+    }
+
+    .confirm-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 0 28px;
+    }
+
+    .confirm-info-list {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 32px;
+    }
+
+    .confirm-info-list li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--deep-navy);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--secondary-bg);
+    }
+
+    .confirm-info-list li:last-child { border-bottom: none; }
+
+    /* IMPROVEMENT 13 — Confirmation info list: bright green icons */
+    .confirm-info-list .ci-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(128,181,23,0.12);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .confirm-thank-you {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--slate-gray);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .btn-view-report {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--teal);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 16px 40px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.15s, box-shadow 0.15s;
+      text-decoration: none;
+      margin-bottom: 36px;
+      /* Staggered entrance — appears after checkmark finishes drawing */
+      animation: screenEnter 0.5s 1.1s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .btn-view-report:hover {
+      background: var(--teal-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(42,157,142,0.3);
+    }
+    .btn-view-report svg { flex-shrink: 0; }
+
+    .confirm-footer-logo {
+      display: block;
+      margin: 0 auto;
+      width: 140px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .confirm-lockup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .confirm-lockup .product-lockup-name { font-size: 14px; }
+    .confirm-lockup .product-lockup-by   { font-size: 10.5px; }
+
+    /* =========================================================
+       HERO PRODUCT NAME
+    ========================================================= */
+    .hero-product-name {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 17px;
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 14px;
+      padding-left: 12px;
+      border-left: 2px solid var(--teal);
+      display: inline-block;
+    }
+
+    /* =========================================================
+       CARD HEADER ROW — lockup left, h2 right
+    ========================================================= */
+    .card-header-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 16px;
+    }
+
+    .card-header-row h2 {
+      padding-left: 20px;
+      border-left: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 640px) {
+      .card-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .card-header-row h2 {
+        padding-left: 0;
+        border-left: none;
+      }
+    }
+
+    /* =========================================================
+       PRODUCT LOCKUP (welcome card)
+    ========================================================= */
+    .product-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      padding-right: 20px;
+    }
+
+    .product-lockup-logo {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .product-lockup-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .product-lockup-name {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--deep-navy);
+      line-height: 1.2;
+    }
+
+    .product-lockup-by {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--slate-gray);
+      letter-spacing: 0.02em;
+    }
+
+    /* =========================================================
+       SOCIAL PROOF BAR + TRUST NOTE
+    ========================================================= */
+    .social-proof-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .social-proof-avatars {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .avatar-dot {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 3px rgba(27,58,95,0.18);
+    }
+
+    .social-proof-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--slate-gray);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .social-proof-text strong {
+      color: var(--deep-navy);
+      font-weight: 700;
+    }
+
+    .trust-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--slate-gray);
+      text-align: left;
+      margin-top: 12px;
+      margin-bottom: 0;
+    }
+
+    /* =========================================================
+       FOOTER PLACEHOLDER
+    ========================================================= */
+    .footer-placeholder {
+      background: var(--deep-navy);
+      height: 64px;
+    }
+
+    /* =========================================================
+       LOCKED RADIO CARD + PARTNER BADGE
+    ========================================================= */
+    .radio-card.locked {
+      opacity: 0.55;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .radio-card.locked:hover {
+      opacity: 0.75;
+      border-color: rgba(42,157,142,0.30);
+    }
+
+    .partner-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--deep-navy);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    /* =========================================================
+       PARTNER POPOVER + BACKDROP
+    ========================================================= */
+    .partner-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(27,58,95,0.45);
+      z-index: 200;
+      backdrop-filter: blur(2px);
+    }
+
+    .partner-backdrop.visible { display: block; }
+
+    @keyframes popoverIn {
+      from { opacity: 0; transform: translate(-50%, -48%) scale(0.97); }
+      to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .partner-popover {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 201;
+      background: #fff;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card-hover);
+      padding: 40px 40px 36px;
+      max-width: 420px;
+      width: calc(100% - 48px);
+      border-top: 4px solid var(--teal);
+    }
+
+    .partner-popover.visible {
+      display: block;
+      animation: popoverIn 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    .partner-popover-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--slate-gray);
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .partner-popover-close:hover {
+      color: var(--deep-navy);
+      background: var(--alt-gray);
+    }
+
+    .partner-popover-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--light-teal);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .partner-popover h3 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--deep-navy);
+      margin-bottom: 4px;
+    }
+
+    .partner-popover-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+
+    .partner-popover-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--slate-gray);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .partner-popover-cta {
+      display: block;
+      text-align: center;
+    }
+
+    /* =========================================================
+       MOBILE RESPONSIVE
+    ========================================================= */
+    @media (max-width: 640px) {
+      .site-header { padding: 0 20px; height: 70px; }
+      .header-lockup-by { display: none; }
+
+      .hero { height: 320px; }
+      .hero-content h1 { font-size: 34px; }
+      .hero-content p { font-size: 16px; }
+
+      .welcome-card { padding: 28px 24px; margin-top: -24px; }
+      .features-row { grid-template-columns: 1fr; }
+
+      .form-container { padding: 16px 16px 48px; }
+      .form-section { padding: 22px 18px; }
+
+      .radio-cards { grid-template-columns: 1fr; }
+
+      .step-indicator { padding: 0 12px; }
+      .step-label { display: none; }
+
+      .confirmation-card { padding: 36px 24px; }
+      .confirmation-card h2 { font-size: 24px; }
+
+      .loader-card { padding: 40px 24px; }
+
+      .site-footer { padding: 28px 20px; }
+      .welcome-footer-strip { padding: 16px 20px; }
+
+      .pipeline-connector-wrap { max-width: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     STICKY HEADER (always visible)
+============================================================ -->
+<header class="site-header">
+  <a href="#" class="header-lockup" onclick="return false;">
+    <img src="logo_4%20(2)%20(1).png" alt="Enterprise Commons" style="height:32px;width:auto;flex-shrink:0;" />
+    <div class="header-lockup-text">
+      <span class="header-lockup-name">Career Navigator</span>
+      <span class="header-lockup-by">by Enterprise Commons</span>
+    </div>
+  </a>
+</header>
+
+
+<!-- ============================================================
+     SCREEN 1 — WELCOME
+============================================================ -->
+<div id="screen-welcome" class="screen active">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Career Guidance for Weather, Water &amp; Climate Professionals</h1>
+      <p>Most career tools give generic advice. This one was built for your field — and delivers a personalized report in minutes.</p>
+    </div>
+  </div>
+
+  <!-- Welcome card -->
+  <div class="welcome-card-wrap">
+    <div class="welcome-card">
+
+      <div class="card-header-row">
+        <div class="product-lockup">
+          <img src="logo_4%20(2)%20(1).png" alt="Enterprise Commons" class="product-lockup-logo" />
+          <div class="product-lockup-text">
+            <span class="product-lockup-name">Career Navigator</span>
+            <span class="product-lockup-by">by Enterprise Commons</span>
+          </div>
+        </div>
+        <h2>Most career advice is generic. Yours won't be.</h2>
+      </div>
+      <p>Tell us about your background, specialty, and the career question you're trying to answer. In 5–10 minutes, you'll give our AI-powered Career Navigator enough context to produce a report that would take a career advisor hours to write — delivered to your inbox in 3 minutes.</p>
+
+      <div class="features-row">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <!-- Lucide: BookOpen -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2A9D8E" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+          </div>
+          <div class="feature-card-title">Grounded in Domain Knowledge</div>
+          <p>Guidance informed by authoritative weather, water, and climate career expertise — not generic advice repurposed from the internet.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <!-- Lucide: Target -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2A9D8E" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="6"/>
+              <circle cx="12" cy="12" r="2"/>
+            </svg>
+          </div>
+          <div class="feature-card-title">Answers Your Specific Question</div>
+          <p>A personalized report built around your actual career question — not a generic template.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <!-- Lucide: TrendingUp -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2A9D8E" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+              <polyline points="16 7 22 7 22 13"/>
+            </svg>
+          </div>
+          <div class="feature-card-title">Concrete Next Steps</div>
+          <p>Specific, actionable pathways based on your background, skills, and where you want to go.</p>
+        </div>
+      </div>
+
+      <hr class="welcome-divider" />
+
+      <div class="social-proof-bar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2A9D8E" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+          <!-- Lucide: Users -->
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <p class="social-proof-text">
+          <strong id="cta-counter-num">127</strong> professionals have used Career Navigator — be next
+        </p>
+      </div>
+
+      <button class="btn-primary btn-cta" onclick="handleCtaClick()">Get My Free Career Report →</button>
+
+      <p class="trust-note">
+        <svg width="12" height="13" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline;vertical-align:middle;margin-right:4px;">
+          <rect x="1.5" y="6" width="10" height="8" rx="1.5" stroke="#2A9D8E" stroke-width="1.5"/>
+          <path d="M3.5 6V4.5a3 3 0 1 1 6 0V6" stroke="#2A9D8E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Free &nbsp;·&nbsp; Confidential
+      </p>
+
+    </div>
+  </div>
+
+  <!-- Footer placeholder — site footer provided by Lovable/EC website -->
+  <div class="footer-placeholder"></div>
+
+</div><!-- /screen-welcome -->
+
+
+<!-- ============================================================
+     SCREEN 2 — FORM
+============================================================ -->
+<div id="screen-form" class="screen">
+
+  <!-- Step indicator -->
+  <div class="step-indicator-bar">
+    <div class="step-indicator" id="step-indicator">
+      <div class="step-item">
+        <div class="step-dot active" id="step-dot-1">1</div>
+        <span class="step-label active" id="step-label-1">About You</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item">
+        <div class="step-dot" id="step-dot-2">2</div>
+        <span class="step-label" id="step-label-2">Background</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item">
+        <div class="step-dot" id="step-dot-3">3</div>
+        <span class="step-label" id="step-label-3">Preferences</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item">
+        <div class="step-dot" id="step-dot-4">4</div>
+        <span class="step-label" id="step-label-4">Your Question</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item">
+        <div class="step-dot" id="step-dot-5">5</div>
+        <span class="step-label" id="step-label-5">Consent</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-container">
+
+    <!-- Confidential banner -->
+    <div class="confidential-banner">
+      <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="9.5" width="16" height="11.5" rx="2" stroke="#2A9D8E" stroke-width="1.7"/>
+        <path d="M5.5 9.5V7a4.5 4.5 0 1 1 9 0v2.5" stroke="#2A9D8E" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+      <div class="confidential-banner-text">
+        <strong>Confidential Mode</strong>
+        <p>Your submission is confidential. Your data will not be used to train AI models.</p>
+      </div>
+    </div>
+
+    <form id="career-form" novalidate>
+
+      <!-- ── SECTION 1 — About You ── -->
+      <div class="form-section" id="section-1" data-section="1">
+        <div class="section-header">
+          <div class="section-badge">1</div>
+          <h2>About You</h2>
+        </div>
+        <p class="section-intro">The more specific you are throughout this form, the more targeted your report will be.</p>
+
+        <!-- Full Name -->
+        <div class="field-group">
+          <label class="field-label" for="full-name">Full Name <span class="required-star">*</span></label>
+          <input class="field-input" type="text" id="full-name" name="fullName" placeholder="Jane Smith" required autocomplete="name" />
+          <div class="field-error" id="err-full-name">Please enter your full name.</div>
+        </div>
+
+        <!-- Email -->
+        <div class="field-group">
+          <label class="field-label" for="email">Email Address <span class="required-star">*</span></label>
+          <input class="field-input" type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
+          <div class="field-error" id="err-email">Please enter a valid email address.</div>
+        </div>
+
+        <!-- LinkedIn -->
+        <div class="field-group">
+          <label class="field-label" for="linkedin">LinkedIn Profile URL</label>
+          <input class="field-input" type="url" id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/your-profile" />
+        </div>
+
+        <!-- Career Stage -->
+        <div class="field-group">
+          <label class="field-label" for="career-stage">Career Stage <span class="required-star">*</span></label>
+          <select class="field-select" id="career-stage" name="careerStage" required>
+            <option value="" disabled selected>Select your career stage...</option>
+            <option value="Student">Student</option>
+            <option value="Early Career">Early Career (0–10 yrs)</option>
+            <option value="Mid-Career">Mid-Career (10–20 yrs)</option>
+            <option value="Senior">Senior (20+ yrs)</option>
+          </select>
+          <div class="field-error" id="err-career-stage">Please select your career stage.</div>
+        </div>
+
+        <!-- 4a: University (student only) -->
+        <div class="field-group conditional-field" id="university-field">
+          <label class="field-label" for="university">University or Degree Program</label>
+          <input class="field-input" type="text" id="university" name="university" placeholder="e.g., Penn State University — B.S. Meteorology" />
+          <div class="field-helper">Shown because you selected Student.</div>
+        </div>
+
+        <!-- 4b: Current Position (non-students) -->
+        <div class="field-group conditional-field" id="position-field">
+          <label class="field-label" for="position">Current Position &amp; Employer, if any</label>
+          <input class="field-input" type="text" id="position" name="position" placeholder="e.g., Research Scientist, NOAA National Weather Service" />
+        </div>
+
+        <!-- Geography & Work Setup -->
+        <div class="field-group">
+          <label class="field-label" for="geography">Location &amp; Work Preference <span class="required-star">*</span></label>
+          <input class="field-input" type="text" id="geography" name="geography" placeholder="e.g., Denver, CO — open to remote or hybrid" required />
+          <div class="field-error" id="err-geography">Please describe your geographic and work setup preferences.</div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 2 — Your Background ── -->
+      <div class="form-section" id="section-2" data-section="2">
+        <div class="section-header">
+          <div class="section-badge">2</div>
+          <h2>Your Background</h2>
+        </div>
+
+        <!-- Educational Background -->
+        <div class="field-group">
+          <label class="field-label" for="education">Educational Background <span class="required-star">*</span></label>
+          <textarea class="field-textarea" id="education" name="education" rows="4" placeholder="e.g., Ph.D. Atmospheric Science, Colorado State University (2018); B.S. Meteorology, Penn State (2013)" required></textarea>
+          <div class="field-error" id="err-education">Please describe your educational background.</div>
+        </div>
+
+        <!-- Professional Field -->
+        <div class="field-group">
+          <label class="field-label" for="field">Professional Field / Area of Expertise <span class="required-star">*</span></label>
+          <div class="field-helper">Describe your primary domain or specialty within the weather, water, and climate field.</div>
+          <textarea class="field-textarea" id="field" name="field" rows="3" placeholder="e.g., Mesoscale meteorology, numerical weather prediction, operational forecasting" required></textarea>
+          <div class="field-error" id="err-field">Please describe your professional field or area of expertise.</div>
+        </div>
+
+        <!-- Key Skills -->
+        <div class="field-group">
+          <label class="field-label" for="skills">Key Skills &amp; Strengths <span class="required-star">*</span></label>
+          <div class="field-helper">Include both technical skills and domain-specific knowledge — this helps us identify gaps and opportunities that a generic tool would miss.</div>
+          <textarea class="field-textarea" id="skills" name="skills" rows="4" placeholder="e.g., Data analysis, Python/R, stakeholder communication, grant writing, team leadership" required></textarea>
+          <div class="field-error" id="err-skills">Please describe your key skills and strengths.</div>
+        </div>
+
+        <!-- Professional Society Involvement -->
+        <div class="field-group">
+          <label class="field-label" for="involvement">Professional Society Memberships &amp; Involvement</label>
+          <div class="field-helper">Your society memberships shape the professional networks and opportunities available to you. Include these so your report reflects the specific pathways open to you through your field's community.</div>
+          <textarea class="field-textarea" id="involvement" name="involvement" rows="3" placeholder="e.g., American Meteorological Society member since 2015, served on the Board on Enterprise Communication, National Weather Association board member"></textarea>
+        </div>
+      </div>
+
+      <!-- ── SECTION 3 — Report Preferences ── -->
+      <div class="form-section" id="section-3" data-section="3">
+        <div class="section-header">
+          <div class="section-badge">3</div>
+          <h2>Report Preferences</h2>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Report Depth Preference <span class="required-star">*</span></label>
+          <div class="radio-cards">
+            <label class="radio-card">
+              <input type="radio" name="reportDepth" value="Standard" checked />
+              <div class="radio-card-title">Focused Guidance</div>
+              <div class="radio-card-desc">A targeted report built around your specific career question — ideal when you know what you're asking and want a clear, actionable answer.</div>
+            </label>
+            <label class="radio-card locked" onclick="showPartnerPopover(event)">
+              <input type="radio" name="reportDepth" value="Comprehensive" disabled />
+              <span class="partner-badge">
+                <svg width="10" height="11" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="1.5" y="6" width="10" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M3.5 6V4.5a3 3 0 1 1 6 0V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                Partner Exclusive
+              </span>
+              <div class="radio-card-title">Full Career Strategy</div>
+              <div class="radio-card-desc">A complete career strategy — multi-pathway scenarios, market positioning, advanced recommendations, and a long-term roadmap.</div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 4 — Your Question ── -->
+      <div class="form-section" id="section-4" data-section="4">
+        <div class="section-header">
+          <div class="section-badge">4</div>
+          <h2>Your Question</h2>
+        </div>
+        <p class="section-intro">You've given us a strong foundation. Now tell us what you'd most like guidance on — this is the central question your report will answer.</p>
+
+        <div class="field-group">
+          <label class="field-label" for="career-question">Career Question or Challenge <span class="required-star">*</span></label>
+          <textarea class="field-textarea" id="career-question" name="careerQuestion" rows="6"
+            placeholder="e.g., I'm a mid-career research scientist wondering how to transition into a science policy role. What skills should I develop, and what pathways are most realistic given my background in climate modeling?"
+            required></textarea>
+          <div class="field-helper">The best responses here are at least a paragraph — describe your situation, what's driving the question, and what a good outcome looks like for you. The more detail you give, the more actionable your report will be.</div>
+          <div class="char-counter" id="char-counter">0 characters</div>
+          <div class="field-error" id="err-career-question">Please describe your career question or challenge.</div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 5 — Consent & Submit ── -->
+      <div class="form-section" id="section-5" data-section="5">
+        <div class="section-header">
+          <div class="section-badge">5</div>
+          <h2>Consent &amp; Submit</h2>
+        </div>
+
+        <!-- Consent 1 — required (EC contact) -->
+        <div class="consent-item">
+          <input type="checkbox" id="consent-contact" name="consentContact" required />
+          <div class="consent-item-text">
+            <div class="consent-item-label">I consent to Enterprise Commons contacting me with relevant news and updates.</div>
+          </div>
+        </div>
+        <div class="field-error" id="err-consent-contact" style="margin-bottom:14px;">You must consent to be contacted by Enterprise Commons.</div>
+
+        <!-- Consent 2 — required (accuracy) -->
+        <div class="consent-item">
+          <input type="checkbox" id="consent-accuracy" name="consentAccuracy" required />
+          <div class="consent-item-text">
+            <div class="consent-item-label">I confirm the accuracy of the information I've provided.</div>
+          </div>
+        </div>
+        <div class="field-error" id="err-consent-accuracy" style="margin-bottom:14px;">You must confirm the accuracy of your information.</div>
+
+        <!-- Consent 3 — required (no training) -->
+        <div class="consent-item">
+          <input type="checkbox" id="consent-no-training" name="consentNoTraining" required />
+          <div class="consent-item-text">
+            <div class="consent-item-label">I understand my data will not be used to train AI models.</div>
+          </div>
+        </div>
+        <div class="field-error" id="err-consent-no-training" style="margin-bottom:18px;">You must acknowledge the AI training policy.</div>
+
+        <button type="submit" class="btn-submit">Generate My Career Report →</button>
+      </div>
+
+    </form><!-- /career-form -->
+  </div><!-- /form-container -->
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Career Navigator is powered by Enterprise Commons &nbsp;·&nbsp; <a href="#">Privacy Notice</a> &nbsp;·&nbsp; © 2026 Enterprise Commons. All rights reserved.</p>
+    <p class="footer-tagline">Knowledge Stewardship in Service of Science</p>
+    <img src="logo_1%20(2)%20(1).png" alt="Powered by Enterprise Commons" class="footer-logo" />
+  </footer>
+
+</div><!-- /screen-form -->
+
+
+<!-- ============================================================
+     SCREEN 3 — LOADER
+============================================================ -->
+<div id="screen-loader" class="screen">
+  <div class="loader-screen-body">
+    <div class="loader-card">
+
+      <h2>Preparing Your Career Report...</h2>
+      <p class="loader-subtext">Our AI career coach is analyzing your profile and crafting personalized guidance. This typically takes 1–2 minutes.</p>
+
+      <!-- 3-stage pipeline -->
+      <div class="pipeline" id="pipeline">
+        <!-- Stage 1 -->
+        <div class="pipeline-stage" id="pipeline-stage-1">
+          <div class="pipeline-stage-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+              <path d="M4 20c0-4 3.58-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="pipeline-stage-num">01</div>
+          <div class="pipeline-stage-label">Profile<br>Analysis</div>
+        </div>
+
+        <!-- Connector 1 -->
+        <div class="pipeline-connector-wrap">
+          <div class="pipeline-connector-track">
+            <div class="pipeline-connector-fill" id="pipeline-fill-1"></div>
+          </div>
+          <svg class="pipeline-arrow" width="10" height="10" viewBox="0 0 10 10" fill="none">
+            <polyline points="2,2 8,5 2,8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="pipeline-stage" id="pipeline-stage-2">
+          <div class="pipeline-stage-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="pipeline-stage-num">02</div>
+          <div class="pipeline-stage-label">Career<br>Coaching</div>
+        </div>
+
+        <!-- Connector 2 -->
+        <div class="pipeline-connector-wrap">
+          <div class="pipeline-connector-track">
+            <div class="pipeline-connector-fill" id="pipeline-fill-2"></div>
+          </div>
+          <svg class="pipeline-arrow" width="10" height="10" viewBox="0 0 10 10" fill="none">
+            <polyline points="2,2 8,5 2,8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="pipeline-stage" id="pipeline-stage-3">
+          <div class="pipeline-stage-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <line x1="8" y1="13" x2="16" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="8" y1="17" x2="13" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="pipeline-stage-num">03</div>
+          <div class="pipeline-stage-label">Report<br>Generation</div>
+        </div>
+      </div>
+
+      <!-- Fun fact strip -->
+      <div class="fun-fact-strip" id="fun-fact-strip">
+        <div class="fun-fact-strip-icon" id="fun-fact-icon">🌀</div>
+        <div class="fun-fact-strip-body">
+          <div class="fun-fact-strip-label">Did you know?</div>
+          <div class="fun-fact-strip-text" id="fun-fact-text">The Coriolis effect — caused by Earth's rotation — deflects winds to the right in the Northern Hemisphere, giving hurricanes and mid-latitude cyclones their characteristic spiral shape.</div>
+        </div>
+      </div>
+
+      <div class="loader-progress-bar">
+        <div class="loader-progress-fill" id="loader-progress-fill"></div>
+      </div>
+      <div class="loader-pct" id="loader-pct">0%</div>
+
+      <div class="loader-message" id="loader-message">Analyzing your career profile...</div>
+    </div>
+  </div>
+</div><!-- /screen-loader -->
+
+
+<!-- ============================================================
+     SCREEN 4 — CONFIRMATION
+============================================================ -->
+<div id="screen-confirmation" class="screen">
+  <div class="confirmation-body">
+    <div class="confirmation-card">
+
+      <!-- Animated checkmark (bright green #80B517) -->
+      <div class="checkmark-wrap">
+        <svg class="checkmark-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle class="ck-bg" cx="40" cy="40" r="38" fill="rgba(128,181,23,0.10)"/>
+          <circle class="ck-circle" cx="40" cy="40" r="33" stroke="#80B517" stroke-width="3" fill="none"
+            stroke-dasharray="207" stroke-dashoffset="207"/>
+          <polyline class="ck-tick" points="22,42 35,56 58,25" stroke="#80B517" stroke-width="4.5"
+            stroke-linecap="round" stroke-linejoin="round"
+            stroke-dasharray="65" stroke-dashoffset="65"/>
+        </svg>
+      </div>
+
+      <h2>Your Career Report Is Ready</h2>
+
+      <p class="confirm-email-line">
+        Your personalized career guidance report is ready to view below. A copy has also been sent to <span class="confirm-email-addr" id="confirm-email-display">[your email]</span>.
+      </p>
+
+      <a href="#" id="btn-view-report" class="btn-view-report">
+        View My Career Report
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+
+      <hr class="confirm-divider" />
+
+      <ul class="confirm-info-list">
+        <li>
+          <span class="ci-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="#80B517" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span>A copy has been emailed to you for reference</span>
+        </li>
+        <li>
+          <span class="ci-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="11" width="18" height="11" rx="2" stroke="#80B517" stroke-width="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="#80B517" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>Your data is kept confidential and will not train AI models</span>
+        </li>
+        <li>
+          <span class="ci-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="#80B517" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span>Questions? Reply directly to the report email</span>
+        </li>
+      </ul>
+
+      <div class="confirm-lockup">
+        <img src="logo_4%20(2)%20(1).png" alt="Enterprise Commons" class="product-lockup-logo" />
+        <div class="product-lockup-text">
+          <span class="product-lockup-name">Career Navigator</span>
+          <span class="product-lockup-by">by Enterprise Commons</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Career Navigator is powered by Enterprise Commons &nbsp;·&nbsp; <a href="#">Privacy Notice</a> &nbsp;·&nbsp; © 2026 Enterprise Commons. All rights reserved.</p>
+    <p class="footer-tagline">Knowledge Stewardship in Service of Science</p>
+    <img src="logo_1%20(2)%20(1).png" alt="Powered by Enterprise Commons" class="footer-logo" />
+  </footer>
+</div><!-- /screen-confirmation -->
+
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+  /* =========================================================
+     LIVE WIRING — Cloudflare Worker
+     Set WORKER_URL to your deployed Worker URL to go live.
+     Leave empty ('') to run in simulation mode (no API calls).
+  ========================================================= */
+  var WORKER_URL = ''; // e.g. 'https://cn-career-navigator-proxy.YOUR-SUBDOMAIN.workers.dev'
+
+  /* Collect all form fields into a JSON payload for the Worker */
+  function collectFormPayload() {
+    var careerStageVal = document.getElementById('career-stage').value;
+    var positionVal    = '';
+    var universityVal  = '';
+    if (careerStageVal === 'Student') {
+      universityVal = document.getElementById('university') ? document.getElementById('university').value.trim() : '';
+    } else {
+      positionVal = document.getElementById('position') ? document.getElementById('position').value.trim() : '';
+    }
+    return {
+      full_name:        document.getElementById('full-name').value.trim(),
+      email:            document.getElementById('email').value.trim(),
+      career_stage:     careerStageVal,
+      position:         positionVal,
+      university:       universityVal,
+      geography:        document.getElementById('geography').value.trim(),
+      education:        document.getElementById('education').value.trim(),
+      field:            document.getElementById('field').value.trim(),
+      skills:           document.getElementById('skills').value.trim(),
+      professional_org: document.getElementById('professional-org') ? document.getElementById('professional-org').value.trim() : '',
+      achievements:     document.getElementById('achievements') ? document.getElementById('achievements').value.trim() : '',
+      strengths:        document.getElementById('strengths') ? document.getElementById('strengths').value.trim() : '',
+      linkedin:         document.getElementById('linkedin') ? document.getElementById('linkedin').value.trim() : '',
+      career_question:  document.getElementById('career-question').value.trim(),
+    };
+  }
+
+  /* =========================================================
+     SCREEN MANAGEMENT
+  ========================================================= */
+  /* =========================================================
+     SOCIAL PROOF COUNTER — persists via localStorage
+  ========================================================= */
+  var CTA_BASE = 127;
+  var ctaCount = parseInt(localStorage.getItem('cn_cta_count') || String(CTA_BASE), 10);
+  if (isNaN(ctaCount) || ctaCount < CTA_BASE) { ctaCount = CTA_BASE; }
+
+  function updateCounterDisplay() {
+    var el = document.getElementById('cta-counter-num');
+    if (el) el.textContent = ctaCount.toLocaleString();
+  }
+
+  function handleCtaClick() {
+    ctaCount++;
+    localStorage.setItem('cn_cta_count', String(ctaCount));
+    updateCounterDisplay();
+    showScreen('form');
+  }
+
+  updateCounterDisplay();
+
+  function showScreen(name) {
+    document.querySelectorAll('.screen').forEach(function(s) {
+      s.classList.remove('active');
+    });
+    var target = document.getElementById('screen-' + name);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    /* IMPROVEMENT 11 — Re-trigger checkmark animation on confirmation */
+    if (name === 'confirmation') {
+      setTimeout(function() {
+        var ckCircle = document.querySelector('.ck-circle');
+        var ckTick   = document.querySelector('.ck-tick');
+        var ckBg     = document.querySelector('.ck-bg');
+        [ckCircle, ckTick, ckBg].forEach(function(el) {
+          if (!el) return;
+          el.style.animation = 'none';
+          el.offsetHeight; /* reflow */
+          el.style.animation = '';
+        });
+      }, 50);
+    }
+
+    /* IMPROVEMENT 8 — Re-initialize IntersectionObserver for form sections */
+    if (name === 'form') {
+      setTimeout(initSectionReveal, 50);
+    }
+  }
+
+  /* =========================================================
+     STEP INDICATOR — update based on scroll position
+  ========================================================= */
+  var formSections = [1, 2, 3, 4, 5];
+
+  /* IMPROVEMENT 9 — updateStepIndicator with connector fills and SVG checkmark */
+  function updateStepIndicator(activeSectionNum) {
+    formSections.forEach(function(n) {
+      var dot   = document.getElementById('step-dot-' + n);
+      var label = document.getElementById('step-label-' + n);
+      if (!dot || !label) return;
+      dot.classList.remove('active', 'complete');
+      label.classList.remove('active');
+      if (n < activeSectionNum) {
+        dot.classList.add('complete');
+        dot.innerHTML = '<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      } else if (n === activeSectionNum) {
+        dot.classList.add('active');
+        dot.innerHTML = n;
+        label.classList.add('active');
+      } else {
+        dot.innerHTML = n;
+      }
+    });
+    /* Update connector fills */
+    var connectors = document.querySelectorAll('#step-indicator .step-connector');
+    connectors.forEach(function(c, i) {
+      if (i < activeSectionNum - 1) {
+        c.classList.add('complete');
+      } else {
+        c.classList.remove('complete');
+      }
+    });
+  }
+
+  function getActiveSectionFromScroll() {
+    var best = 1;
+    formSections.forEach(function(n) {
+      var el = document.getElementById('section-' + n);
+      if (!el) return;
+      var rect = el.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.55) {
+        best = n;
+      }
+    });
+    return best;
+  }
+
+  document.getElementById('screen-form').addEventListener('scroll', function() {
+    updateStepIndicator(getActiveSectionFromScroll());
+  }, { passive: true });
+
+  window.addEventListener('scroll', function() {
+    if (document.getElementById('screen-form').classList.contains('active')) {
+      updateStepIndicator(getActiveSectionFromScroll());
+    }
+  }, { passive: true });
+
+  /* =========================================================
+     IMPROVEMENT 8 — IntersectionObserver — reveal form sections on scroll
+  ========================================================= */
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  function initSectionReveal() {
+    document.querySelectorAll('.form-section').forEach(function(el) {
+      el.classList.remove('revealed');
+      revealObserver.observe(el);
+    });
+  }
+
+  /* =========================================================
+     CAREER STAGE CONDITIONAL LOGIC
+  ========================================================= */
+  var careerStageSelect = document.getElementById('career-stage');
+  var universityField   = document.getElementById('university-field');
+  var positionField     = document.getElementById('position-field');
+
+  careerStageSelect.addEventListener('change', function() {
+    if (this.value === 'Student') {
+      universityField.classList.add('visible');
+      positionField.classList.remove('visible');
+    } else if (this.value !== '') {
+      positionField.classList.add('visible');
+      universityField.classList.remove('visible');
+    } else {
+      universityField.classList.remove('visible');
+      positionField.classList.remove('visible');
+    }
+  });
+
+  /* =========================================================
+     CHARACTER COUNTER
+  ========================================================= */
+  var careerQuestionTA = document.getElementById('career-question');
+  var charCounter      = document.getElementById('char-counter');
+
+  careerQuestionTA.addEventListener('input', function() {
+    var len = this.value.length;
+    charCounter.textContent = len.toLocaleString() + ' character' + (len !== 1 ? 's' : '');
+  });
+
+  /* =========================================================
+     FORM VALIDATION
+  ========================================================= */
+  function showError(fieldId, errId) {
+    var field = document.getElementById(fieldId);
+    var err   = document.getElementById(errId);
+    if (field) field.classList.add('error');
+    if (err)   err.classList.add('visible');
+  }
+
+  function clearError(fieldId, errId) {
+    var field = document.getElementById(fieldId);
+    var err   = document.getElementById(errId);
+    if (field) field.classList.remove('error');
+    if (err)   err.classList.remove('visible');
+  }
+
+  function validateEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  }
+
+  function validateForm() {
+    var valid      = true;
+    var firstError = null;
+
+    function check(condition, fieldId, errId) {
+      if (!condition) {
+        showError(fieldId, errId);
+        if (!firstError) firstError = document.getElementById(fieldId) || document.getElementById(errId);
+        valid = false;
+      } else {
+        clearError(fieldId, errId);
+      }
+    }
+
+    // Section 1
+    var fullName = document.getElementById('full-name').value.trim();
+    check(fullName.length > 0, 'full-name', 'err-full-name');
+
+    var email = document.getElementById('email').value.trim();
+    check(validateEmail(email), 'email', 'err-email');
+
+    var careerStage = document.getElementById('career-stage').value;
+    check(careerStage !== '', 'career-stage', 'err-career-stage');
+
+    var geography = document.getElementById('geography').value.trim();
+    check(geography.length > 0, 'geography', 'err-geography');
+
+    // Section 2
+    var education = document.getElementById('education').value.trim();
+    check(education.length > 0, 'education', 'err-education');
+
+    var fieldVal = document.getElementById('field').value.trim();
+    check(fieldVal.length > 0, 'field', 'err-field');
+
+    var skills = document.getElementById('skills').value.trim();
+    check(skills.length > 0, 'skills', 'err-skills');
+
+    // Section 4
+    var careerQuestion = document.getElementById('career-question').value.trim();
+    check(careerQuestion.length > 0, 'career-question', 'err-career-question');
+
+    // Section 5 — required checkboxes
+    var consentContact    = document.getElementById('consent-contact').checked;
+    var consentAccuracy   = document.getElementById('consent-accuracy').checked;
+    var consentNoTraining = document.getElementById('consent-no-training').checked;
+
+    if (!consentContact) {
+      document.getElementById('err-consent-contact').classList.add('visible');
+      if (!firstError) firstError = document.getElementById('consent-contact');
+      valid = false;
+    } else {
+      document.getElementById('err-consent-contact').classList.remove('visible');
+    }
+
+    if (!consentAccuracy) {
+      document.getElementById('err-consent-accuracy').classList.add('visible');
+      if (!firstError) firstError = document.getElementById('consent-accuracy');
+      valid = false;
+    } else {
+      document.getElementById('err-consent-accuracy').classList.remove('visible');
+    }
+
+    if (!consentNoTraining) {
+      document.getElementById('err-consent-no-training').classList.add('visible');
+      if (!firstError) firstError = document.getElementById('consent-no-training');
+      valid = false;
+    } else {
+      document.getElementById('err-consent-no-training').classList.remove('visible');
+    }
+
+    if (!valid && firstError) {
+      firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstError.focus();
+    }
+
+    return valid;
+  }
+
+  // Clear errors on input/change
+  ['full-name','email','career-stage','geography','education','field','skills','career-question'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', function() {
+        this.classList.remove('error');
+        var errEl = document.getElementById('err-' + id);
+        if (errEl) errEl.classList.remove('visible');
+      });
+      el.addEventListener('change', function() {
+        this.classList.remove('error');
+        var errEl = document.getElementById('err-' + id);
+        if (errEl) errEl.classList.remove('visible');
+      });
+    }
+  });
+
+  /* =========================================================
+     FORM SUBMIT
+  ========================================================= */
+  var careerForm = document.getElementById('career-form');
+
+  careerForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    var submittedEmail = document.getElementById('email').value.trim();
+
+    showScreen('loader');
+
+    if (WORKER_URL) {
+      var payload = collectFormPayload();
+      fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then(function(res) { return res.json(); })
+        .then(function(json) {
+          var sessionId = json.sessionId;
+          startLoaderLive(submittedEmail, sessionId);
+        })
+        .catch(function() {
+          // Fallback to simulation on network error
+          startLoader(submittedEmail);
+        });
+    } else {
+      startLoader(submittedEmail);
+    }
+  });
+
+  /* =========================================================
+     LOADER — animated messages & progress
+  ========================================================= */
+  var loaderMessages = [
+    'Analyzing your career profile and background...',
+    'Applying the DECIDE coaching framework to your experience...',
+    'Identifying career pathways and opportunities in your specialty...',
+    'Mapping professional networks and society connections...',
+    'Evaluating market positioning in the weather and water sector...',
+    'Crafting tailored recommendations for your career question...',
+    'Finalizing and formatting your personalized report...'
+  ];
+
+  var loaderFunFacts = [
+    { icon: '🌀', text: 'The Coriolis effect — caused by Earth\'s rotation — deflects winds to the right in the Northern Hemisphere, giving hurricanes and mid-latitude cyclones their characteristic spiral shape.' },
+    { icon: '💨', text: 'Jet streams can reach speeds of over 275 mph. Commercial aircraft often save hours of flight time by riding favorable jet stream currents across the North Atlantic.' },
+    { icon: '⛈️', text: 'A single mature thunderstorm can release energy equivalent to a small nuclear weapon. At any given moment, roughly 2,000 thunderstorms are active somewhere on Earth.' },
+    { icon: '🌡️', text: 'The stratosphere is one of the few layers where temperature increases with altitude — the ozone layer absorbs UV radiation, warming the air above rather than below.' },
+    { icon: '🌊', text: 'The ocean has absorbed over 90% of the excess heat trapped by greenhouse gases since the 1970s. Sea surface temperature is one of the strongest predictors of hurricane intensity.' },
+    { icon: '📡', text: 'Doppler radar doesn\'t just detect precipitation — it measures the motion of raindrops. This lets forecasters detect rotation inside a thunderstorm before a tornado even touches the ground.' },
+    { icon: '❄️', text: 'Snow crystal shape is determined almost entirely by temperature and humidity at the moment of formation. The same conditions always produce the same basic forms — six-sided symmetry is a law of ice physics.' },
+    { icon: '🌪️', text: 'The U.S. averages roughly 1,200 tornadoes per year — more than any other country. Tornado Alley\'s unique geography funnels warm Gulf air directly into dry continental air masses.' },
+    { icon: '☁️', text: 'Cumulonimbus clouds — the tallest storm clouds — can extend from near ground level to over 12 km in height, spanning the entire depth of the troposphere in a single column.' },
+    { icon: '🛰️', text: 'GOES-16 captures a full-disk image of the Western Hemisphere every 10 minutes — and every 30 seconds when tracking rapidly developing severe weather events.' },
+    { icon: '🌬️', text: 'Wind shear — a change in wind speed or direction with altitude — is the single factor most responsible for determining whether a developing tropical storm will intensify or weaken.' },
+    { icon: '💧', text: 'A water molecule in the ocean spends an average of 3,200 years before evaporating into the atmosphere. Once airborne, that same molecule typically falls as precipitation within about 9 days.' },
+    { icon: '🌏', text: 'El Niño events redistribute heat across the Pacific Ocean, shifting precipitation patterns on every continent — simultaneously causing drought in Australia while bringing flooding to the U.S. Gulf Coast.' },
+    { icon: '🧊', text: 'Arctic sea ice has declined by roughly 13% per decade since 1979. The loss of this reflective white surface accelerates warming in a self-reinforcing cycle called Arctic amplification.' },
+    { icon: '🌈', text: 'Rainbows always appear at exactly 42° from the anti-solar point — directly opposite the sun. You\'ll never see a rainbow at noon; the sun must be below 42° above the horizon.' },
+    { icon: '🔬', text: 'Atmospheric CO₂ is now approximately 424 parts per million — the highest concentration in at least 3 million years, and rising at a rate roughly 100 times faster than any natural historical shift.' }
+  ];
+
+  /* ─────────────────────────────────────────────────────────────
+     LOADER ORCHESTRATION
+     PROTOTYPE_DURATION: controls how fast the demo loader runs.
+     Production: drive completion via API response callback instead.
+     For a realistic 2-min experience, set to 120000.
+  ───────────────────────────────────────────────────────────── */
+  var PROTOTYPE_DURATION = 8000; // ms — set to 120000 for production timing
+
+  var loaderProgressValue    = 0;
+  var loaderProgressInterval = null;
+  var loaderResponseReceived = false;
+  var loaderMsgIndex         = 0;
+  var loaderFactIndex        = 0;
+  var loaderMsgTimer         = null;
+  var loaderFactTimer        = null;
+
+  function startLoader(submittedEmail) {
+    var progressFill = document.getElementById('loader-progress-fill');
+    var pctEl        = document.getElementById('loader-pct');
+    var messageEl    = document.getElementById('loader-message');
+    var iconEl       = document.getElementById('fun-fact-icon');
+    var textEl       = document.getElementById('fun-fact-text');
+    var strip        = document.getElementById('fun-fact-strip');
+
+    // Clear any previous timers
+    if (loaderProgressInterval) { clearInterval(loaderProgressInterval); loaderProgressInterval = null; }
+    if (loaderMsgTimer)          { clearInterval(loaderMsgTimer);  loaderMsgTimer  = null; }
+    if (loaderFactTimer)         { clearInterval(loaderFactTimer); loaderFactTimer = null; }
+
+    // Reset state
+    loaderProgressValue    = 0;
+    loaderResponseReceived = false;
+    loaderMsgIndex         = 0;
+    loaderFactIndex        = 0;
+
+    // Reset pipeline stages
+    ['pipeline-stage-1','pipeline-stage-2','pipeline-stage-3'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) { el.classList.remove('active','complete'); }
+    });
+    ['pipeline-fill-1','pipeline-fill-2'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) { el.classList.remove('filled'); }
+    });
+    document.querySelectorAll('.pipeline-connector-wrap').forEach(function(el) {
+      el.classList.remove('complete');
+    });
+
+    // Reset progress + message
+    progressFill.style.width = '0%';
+    if (pctEl) pctEl.textContent = '0%';
+    messageEl.textContent = loaderMessages[0];
+    messageEl.classList.remove('fade');
+
+    // Seed first fun fact
+    if (iconEl) iconEl.textContent = loaderFunFacts[0].icon;
+    if (textEl) textEl.textContent = loaderFunFacts[0].text;
+    if (strip)  strip.classList.remove('fade-out-fact');
+
+    var d = PROTOTYPE_DURATION;
+
+    // Activate stage 1 immediately
+    var s1 = document.getElementById('pipeline-stage-1');
+    if (s1) s1.classList.add('active');
+
+    // Stage 2 at ~35% of duration
+    setTimeout(function() {
+      var st1 = document.getElementById('pipeline-stage-1');
+      var st2 = document.getElementById('pipeline-stage-2');
+      var f1  = document.getElementById('pipeline-fill-1');
+      var cw  = document.querySelectorAll('.pipeline-connector-wrap')[0];
+      if (st1) { st1.classList.remove('active'); st1.classList.add('complete'); }
+      if (f1)  f1.classList.add('filled');
+      if (cw)  cw.classList.add('complete');
+      setTimeout(function() { if (st2) st2.classList.add('active'); }, 500);
+    }, d * 0.35);
+
+    // Stage 3 at ~70% of duration
+    setTimeout(function() {
+      var st2 = document.getElementById('pipeline-stage-2');
+      var st3 = document.getElementById('pipeline-stage-3');
+      var f2  = document.getElementById('pipeline-fill-2');
+      var cw  = document.querySelectorAll('.pipeline-connector-wrap')[1];
+      if (st2) { st2.classList.remove('active'); st2.classList.add('complete'); }
+      if (f2)  f2.classList.add('filled');
+      if (cw)  cw.classList.add('complete');
+      setTimeout(function() { if (st3) st3.classList.add('active'); }, 500);
+    }, d * 0.70);
+
+    // Easing progress bar: large steps early, decelerates near 90%
+    loaderProgressInterval = setInterval(function() {
+      if (loaderProgressValue >= 90) { clearInterval(loaderProgressInterval); return; }
+      var remaining = 90 - loaderProgressValue;
+      var increment = Math.max(0.15, remaining * 0.022);
+      loaderProgressValue = Math.min(90, loaderProgressValue + increment);
+      progressFill.style.width = loaderProgressValue + '%';
+      if (pctEl) pctEl.textContent = Math.floor(loaderProgressValue) + '%';
+      // If API responded while progress was still running, complete immediately
+      if (loaderResponseReceived) {
+        clearInterval(loaderProgressInterval);
+        completeLoaderProgress(progressFill, pctEl, submittedEmail);
+      }
+    }, 750);
+
+    // Status message rotation
+    var msgInterval = Math.round(d / loaderMessages.length);
+    loaderMsgTimer = setInterval(function() {
+      messageEl.classList.add('fade');
+      setTimeout(function() {
+        loaderMsgIndex = (loaderMsgIndex + 1) % loaderMessages.length;
+        messageEl.textContent = loaderMessages[loaderMsgIndex];
+        messageEl.classList.remove('fade');
+      }, 400);
+    }, msgInterval);
+
+    // Fun fact rotation — first swap offset by ~40% of duration (or 4s cap for fast demos)
+    var factDelay    = Math.min(4000, d * 0.45);
+    var factInterval = Math.max(3500, Math.min(12000, d * 0.55));
+    setTimeout(function() {
+      loaderFactTimer = setInterval(function() {
+        if (strip) strip.classList.add('fade-out-fact');
+        setTimeout(function() {
+          loaderFactIndex = (loaderFactIndex + 1) % loaderFunFacts.length;
+          if (iconEl) iconEl.textContent = loaderFunFacts[loaderFactIndex].icon;
+          if (textEl) textEl.textContent = loaderFunFacts[loaderFactIndex].text;
+          if (strip)  strip.classList.remove('fade-out-fact');
+        }, 420);
+      }, factInterval);
+    }, factDelay);
+
+    // Prototype: simulate API response arriving near end of duration
+    setTimeout(function() {
+      loaderResponseReceived = true;
+    }, d - 500);
+  }
+
+  /* startLoaderLive — polls Worker KV until results are ready, then redirects */
+  function startLoaderLive(submittedEmail, sessionId) {
+    // Start the visual loader with a long duration (2 min cap)
+    var savedDuration = PROTOTYPE_DURATION;
+    PROTOTYPE_DURATION = 120000;
+    startLoader(submittedEmail);
+    PROTOTYPE_DURATION = savedDuration;
+
+    // Override: don't auto-simulate a response
+    loaderResponseReceived = false;
+
+    // Poll the Worker every 5 seconds
+    var pollInterval = setInterval(function() {
+      fetch(WORKER_URL + '/results/' + sessionId)
+        .then(function(res) { return res.json(); })
+        .then(function(json) {
+          if (json.status === 'ready') {
+            clearInterval(pollInterval);
+            loaderResponseReceived = true;
+            // Wire the CTA button to pass the session ID
+            var btn = document.getElementById('btn-view-report');
+            if (btn) btn.href = 'career-navigator-results.html?session=' + encodeURIComponent(sessionId);
+          }
+        })
+        .catch(function() { /* keep polling */ });
+    }, 5000);
+
+    // Safety timeout: if no response after 10 minutes, stop polling
+    setTimeout(function() { clearInterval(pollInterval); }, 600000);
+  }
+
+  function completeLoaderProgress(progressFill, pctEl, submittedEmail) {
+    clearInterval(loaderProgressInterval);
+    if (loaderMsgTimer)  { clearInterval(loaderMsgTimer);  loaderMsgTimer  = null; }
+    if (loaderFactTimer) { clearInterval(loaderFactTimer); loaderFactTimer = null; }
+    var st3 = document.getElementById('pipeline-stage-3');
+    if (st3) { st3.classList.remove('active'); st3.classList.add('complete'); }
+    loaderProgressValue = 100;
+    progressFill.style.width = '100%';
+    if (pctEl) pctEl.textContent = '100%';
+    setTimeout(function() {
+      document.getElementById('confirm-email-display').textContent = submittedEmail;
+      // Simulation mode: ensure CTA button has a valid href
+      var btn = document.getElementById('btn-view-report');
+      if (btn && !btn.href.includes('?session=')) {
+        btn.href = 'career-navigator-results.html';
+      }
+      showScreen('confirmation');
+    }, 800);
+  }
+
+  /* =========================================================
+     INITIAL STATE
+  ========================================================= */
+  updateStepIndicator(1);
+
+  /* =========================================================
+     PARTNER POPOVER — locked Comprehensive card
+  ========================================================= */
+  function showPartnerPopover(e) {
+    e.preventDefault();
+    document.getElementById('partner-backdrop').classList.add('visible');
+    document.getElementById('partner-popover').classList.add('visible');
+  }
+
+  function closePartnerPopover() {
+    document.getElementById('partner-backdrop').classList.remove('visible');
+    document.getElementById('partner-popover').classList.remove('visible');
+  }
+
+  document.getElementById('partner-backdrop').addEventListener('click', closePartnerPopover);
+</script>
+
+<!-- Partner Popover -->
+<div class="partner-backdrop" id="partner-backdrop"></div>
+<div class="partner-popover" id="partner-popover" role="dialog" aria-modal="true">
+  <button class="partner-popover-close" onclick="closePartnerPopover()" aria-label="Close">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+  <div class="partner-popover-icon">
+    <svg width="22" height="24" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="1.5" y="6" width="10" height="8" rx="1.5" stroke="#2A9D8E" stroke-width="1.5"/>
+      <path d="M3.5 6V4.5a3 3 0 1 1 6 0V6" stroke="#2A9D8E" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <h3>Comprehensive Reports</h3>
+  <p class="partner-popover-sub">For Partner Societies &amp; Associations</p>
+  <p class="partner-popover-body">Comprehensive reports are available to members of Enterprise Commons partner societies and associations. If you'd like access to deeper analysis and advanced career strategies, ask your organization's leadership about bringing Career Navigator to your members.</p>
+  <a href="#" class="btn-primary partner-popover-cta">Learn More About Partnerships →</a>
+</div>
+
+</body>
+</html>
