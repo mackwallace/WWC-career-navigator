@@ -54,7 +54,7 @@ export default {
         return new Response('Bad Request', { status: 400, headers: corsHeaders });
       }
 
-      payload['session_id'] = sessionId;
+      payload['session-id'] = sessionId;
 
       await env.RESULTS_KV.put(
         sessionId,
