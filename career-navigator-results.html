@@ -364,11 +364,13 @@
     }
     .pathway-card.alt-b { border-left-color: var(--deep-navy); }
     .pathway-card.alt-c { border-left-color: var(--orange); }
+    .pathway-card.alt-d { border-left-color: var(--bright-green); }
 
     /* Card hover — border thickens, content nudges right */
     .pathway-card.primary:hover  { border-left-width: 7px; }
     .pathway-card.alt-b:hover    { border-left-width: 7px; }
     .pathway-card.alt-c:hover    { border-left-width: 7px; }
+    .pathway-card.alt-d:hover    { border-left-width: 7px; }
 
     .pathway-card-inner {
       transition: transform 0.2s ease;
@@ -395,9 +397,11 @@
     .pathway-card.primary::before   { color: rgba(42,157,142,0.07); }
     .pathway-card.alt-b::before     { color: rgba(27,58,95,0.05); }
     .pathway-card.alt-c::before     { color: rgba(232,115,79,0.07); }
+    .pathway-card.alt-d::before     { color: rgba(128,181,23,0.07); }
     .pathway-card.primary:hover::before   { color: rgba(42,157,142,0.13); }
     .pathway-card.alt-b:hover::before     { color: rgba(27,58,95,0.10); }
     .pathway-card.alt-c:hover::before     { color: rgba(232,115,79,0.13); }
+    .pathway-card.alt-d:hover::before     { color: rgba(128,181,23,0.13); }
 
     /* Inside wrapper: flush, no individual shadow/radius */
     .pathways-wrapper .pathway-card {
@@ -429,6 +433,7 @@
     .pathway-card.primary   .pathway-chapter-label { color: var(--teal); }
     .pathway-card.alt-b     .pathway-chapter-label { color: var(--deep-navy); }
     .pathway-card.alt-c     .pathway-chapter-label { color: var(--orange); }
+    .pathway-card.alt-d     .pathway-chapter-label { color: var(--bright-green); }
     .pathway-title {
       font-family: 'Merriweather', Georgia, serif;
       font-size: 19px;
@@ -448,6 +453,7 @@
     .badge-primary { background: var(--teal-light); color: var(--teal); border: 1px solid rgba(42,157,142,0.25); }
     .badge-alt     { background: rgba(27,58,95,0.07); color: var(--deep-navy); border: 1px solid var(--border); }
     .badge-third   { background: var(--orange-light); color: var(--orange); border: 1px solid rgba(232,115,79,0.25); }
+    .badge-fourth  { background: var(--green-light);  color: var(--bright-green); border: 1px solid rgba(128,181,23,0.25); }
 
     .pathway-body {
       font-size: 13.5px;
@@ -496,6 +502,7 @@
     .pathway-card.primary:hover   .pathway-actions { border-left-color: var(--teal); }
     .pathway-card.alt-b:hover     .pathway-actions { border-left-color: var(--deep-navy); }
     .pathway-card.alt-c:hover     .pathway-actions { border-left-color: var(--orange); }
+    .pathway-card.alt-d:hover     .pathway-actions { border-left-color: var(--bright-green); }
     .pathway-actions-label {
       font-size: 10px;
       font-weight: 700;
@@ -506,6 +513,7 @@
     }
     .pathway-card.alt-b .pathway-actions-label { color: var(--deep-navy); }
     .pathway-card.alt-c .pathway-actions-label { color: var(--orange); }
+    .pathway-card.alt-d .pathway-actions-label { color: var(--bright-green); }
     .pathway-actions-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
     .pathway-actions-list li {
       display: flex;
@@ -529,6 +537,7 @@
     }
     .pathway-card.alt-b .pathway-actions-list li::before { color: var(--deep-navy); }
     .pathway-card.alt-c .pathway-actions-list li::before { color: var(--orange); }
+    .pathway-card.alt-d .pathway-actions-list li::before { color: var(--bright-green); }
     .pathway-actions-list li:hover::before { transform: translateX(2px); }
 
     /* ── RECOMMENDATION ── */
@@ -1521,30 +1530,54 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
     }
 
     // ── Career Pathways ──────────────────────────────────────
-    setText('.pathways-intro', d.pathways_intro);
+    setText('.pathways-intro .section-deck', d.pathways_intro);
 
     if (d.pathways && d.pathways.length) {
-      d.pathways.forEach(function (p) {
-        var badgeMap = { 'Recommended': 'A', 'Alternative': 'B', 'Longer-term': 'C' };
-        var letter = p.letter || badgeMap[p.badge] || p.badge;
-        var card = document.querySelector('.pathway-card[data-letter="' + letter + '"]');
-        if (!card) return;
-        var titleEl   = card.querySelector('.pathway-title');
-        var bodyEl    = card.querySelector('.pathway-body');
-        var detailEl  = card.querySelector('.pathway-details');
-        if (titleEl)  titleEl.textContent  = p.title;
-        if (bodyEl)   bodyEl.textContent   = p.summary || p.body || '';
-        if (detailEl) detailEl.textContent = p.details || p.body || '';
-        var sfArr = p.success_factors || p.immediate_actions || [];
-        if (sfArr.length) {
-          var sfList = card.querySelector('.pathway-actions-list');
-          if (sfList) {
-            sfList.innerHTML = sfArr.map(function (f) {
-              return '<li>' + escHtml(f) + '</li>';
-            }).join('');
-          }
-        }
-      });
+      var wrapper = document.querySelector('.pathways-wrapper');
+      if (wrapper) {
+        // Remove static prototype cards, keep the intro element
+        wrapper.querySelectorAll('.pathway-card').forEach(function(c) { c.remove(); });
+
+        var letterClassMap = { A: 'primary', B: 'alt-b', C: 'alt-c', D: 'alt-d' };
+        var badgeClassMap  = {
+          'Recommended': 'badge-primary',
+          'Alternative': 'badge-alt',
+          'Longer-term': 'badge-third',
+          'Long-term':   'badge-third',
+          'Speculative': 'badge-fourth'
+        };
+
+        d.pathways.forEach(function(p, idx) {
+          var letter     = p.letter || String.fromCharCode(65 + idx);
+          var cardClass  = letterClassMap[letter] || 'alt-d';
+          var badgeClass = badgeClassMap[p.badge] || (letter === 'A' ? 'badge-primary' : letter === 'D' ? 'badge-fourth' : 'badge-alt');
+          var sfArr      = p.success_factors || p.immediate_actions || [];
+          var actionsHTML = sfArr.length
+            ? '<div class="pathway-actions">' +
+                '<div class="pathway-actions-label">Immediate Actions</div>' +
+                '<ul class="pathway-actions-list">' +
+                sfArr.map(function(f) { return '<li>' + escHtml(f) + '</li>'; }).join('') +
+                '</ul></div>'
+            : '';
+
+          wrapper.insertAdjacentHTML('beforeend',
+            '<div class="pathway-card ' + cardClass + '" data-letter="' + letter + '">' +
+              '<div class="pathway-card-inner">' +
+                '<div class="pathway-header">' +
+                  '<div class="pathway-num-title">' +
+                    '<div class="pathway-chapter-label">Pathway ' + letter + '</div>' +
+                    '<h3 class="pathway-title">' + escHtml(p.title || '') + '</h3>' +
+                  '</div>' +
+                  '<span class="pathway-badge ' + badgeClass + '">' + escHtml(p.badge || '') + '</span>' +
+                '</div>' +
+                '<p class="pathway-body">' + escHtml(p.summary || p.body || '') + '</p>' +
+                '<div class="pathway-details">' + escHtml(p.details || p.body || '') + '</div>' +
+                actionsHTML +
+              '</div>' +
+            '</div>'
+          );
+        });
+      }
     }
 
     // ── Recommendation ───────────────────────────────────────
