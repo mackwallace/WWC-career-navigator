@@ -2588,7 +2588,23 @@
     { icon: '🌏', text: 'El Niño events redistribute heat across the Pacific Ocean, shifting precipitation patterns on every continent — simultaneously causing drought in Australia while bringing flooding to the U.S. Gulf Coast.' },
     { icon: '🧊', text: 'Arctic sea ice has declined by roughly 13% per decade since 1979. The loss of this reflective white surface accelerates warming in a self-reinforcing cycle called Arctic amplification.' },
     { icon: '🌈', text: 'Rainbows always appear at exactly 42° from the anti-solar point — directly opposite the sun. You\'ll never see a rainbow at noon; the sun must be below 42° above the horizon.' },
-    { icon: '🔬', text: 'Atmospheric CO₂ is now approximately 424 parts per million — the highest concentration in at least 3 million years, and rising at a rate roughly 100 times faster than any natural historical shift.' }
+    { icon: '🔬', text: 'Atmospheric CO₂ is now approximately 424 parts per million — the highest concentration in at least 3 million years, and rising at a rate roughly 100 times faster than any natural historical shift.' },
+    { icon: '⚡', text: 'Lightning strikes Earth approximately 100 times every second — more than 8 million times a day. Each bolt heats the surrounding air to roughly 30,000 Kelvin, five times hotter than the surface of the sun.' },
+    { icon: '🌊', text: 'Atmospheric rivers are narrow corridors of concentrated water vapor that can carry more moisture than 15 Mississippi Rivers. A single event can end a years-long California drought in just a few days.' },
+    { icon: '🌌', text: 'Noctilucent clouds form at the edge of space, roughly 80 km above Earth\'s surface — the highest clouds in the atmosphere. They\'re only visible in twilight, when sunlight still illuminates these ice crystals from below after the sun has set.' },
+    { icon: '🔴', text: 'Sprites are giant electrical discharges that shoot upward from thunderstorm tops into the mesosphere, reaching 90 km altitude. Scientists confirmed their existence only in 1989, when a camera accidentally captured one on film.' },
+    { icon: '🌧️', text: 'Monsoon systems affect roughly half the world\'s population. The South Asian monsoon — driven by temperature contrast between the Indian Ocean and the Asian continent — delivers 70–80% of India\'s annual rainfall in just four months.' },
+    { icon: '🎈', text: 'Weather balloons carry radiosondes that transmit temperature, humidity, pressure, and wind data every second as they ascend. Meteorological agencies worldwide launch roughly 900 of these twice daily, all synchronized to the same UTC launch times.' },
+    { icon: '💥', text: 'A microburst is a concentrated downdraft from a thunderstorm that can produce winds exceeding 150 mph at ground level — stronger than many tornadoes. They were only identified as a distinct phenomenon in 1975, following several fatal aviation disasters.' },
+    { icon: '⛰️', text: 'Mountain ranges force air upward, triggering rainfall on the windward side while creating dry rain shadows on the leeward side. Washington\'s Olympic Peninsula receives over 140 inches of rain per year; 75 miles east, in the rain shadow, some areas receive fewer than 10.' },
+    { icon: '🌐', text: 'The polar vortex is a persistent area of low pressure and cold air encircling the Arctic. When it weakens in winter, surges of Arctic air plunge into the mid-latitudes — what\'s commonly called a "polar vortex event" is really a disruption of this normally stable circulation.' },
+    { icon: '🏜️', text: 'Every year, roughly 27 million tons of Saharan dust cross the Atlantic Ocean and fertilize the Amazon rainforest. The phosphorus in this dust — largely from a single ancient dry lake bed in Chad — replaces nutrients lost each year to Amazon rainfall.' },
+    { icon: '🌂', text: 'Virga is precipitation that evaporates before reaching the ground, appearing as ghostly streaks hanging beneath clouds. It\'s most common in arid regions where the air between the cloud base and the surface is dry enough to dissolve rainfall mid-fall.' },
+    { icon: '🌠', text: 'Auroras occur when charged particles from the sun collide with oxygen and nitrogen in Earth\'s upper atmosphere between 100 and 300 km altitude. Green comes from oxygen at lower altitudes; rare red and purple hues come from oxygen and nitrogen higher up.' },
+    { icon: '💧', text: 'Dew point is a more reliable measure of humidity discomfort than relative humidity. A 90% relative humidity reading means something very different at 50°F versus 90°F — but a dew point above 65°F consistently signals uncomfortable air, regardless of temperature.' },
+    { icon: '💻', text: 'The first computerized weather forecast ran in 1950 on ENIAC, one of the world\'s first electronic computers. It took 24 hours of computing to produce a 24-hour forecast. Modern models now run global forecasts in minutes.' },
+    { icon: '🌀', text: 'The eye of a major hurricane can be one of the calmest places on Earth — clear skies, light winds, even sunshine. It\'s surrounded by the eyewall: the most intense ring of thunderstorms in the storm, where the strongest winds and heaviest rainfall concentrate.' },
+    { icon: '🏔️', text: 'Lake-effect snow forms when cold Arctic air flows over relatively warm Great Lakes water, picking up heat and moisture that drops as intense, localized snowfall on the downwind shore. Buffalo, New York has recorded over 5 feet of snow from a single lake-effect event.' }
   ];
 
   /* ─────────────────────────────────────────────────────────────
@@ -2606,6 +2622,7 @@
   var loaderFactIndex        = 0;
   var loaderMsgTimer         = null;
   var loaderFactTimer        = null;
+  var liveSessionId          = null;
 
   function startLoader(submittedEmail) {
     var progressFill = document.getElementById('loader-progress-fill');
@@ -2645,9 +2662,10 @@
     messageEl.textContent = loaderMessages[0];
     messageEl.classList.remove('fade');
 
-    // Seed first fun fact
-    if (iconEl) iconEl.textContent = loaderFunFacts[0].icon;
-    if (textEl) textEl.textContent = loaderFunFacts[0].text;
+    // Seed first fun fact — random start
+    loaderFactIndex = Math.floor(Math.random() * loaderFunFacts.length);
+    if (iconEl) iconEl.textContent = loaderFunFacts[loaderFactIndex].icon;
+    if (textEl) textEl.textContent = loaderFunFacts[loaderFactIndex].text;
     if (strip)  strip.classList.remove('fade-out-fact');
 
     var d = PROTOTYPE_DURATION;
@@ -2713,7 +2731,9 @@
       loaderFactTimer = setInterval(function() {
         if (strip) strip.classList.add('fade-out-fact');
         setTimeout(function() {
-          loaderFactIndex = (loaderFactIndex + 1) % loaderFunFacts.length;
+          var nextIdx;
+          do { nextIdx = Math.floor(Math.random() * loaderFunFacts.length); } while (nextIdx === loaderFactIndex && loaderFunFacts.length > 1);
+          loaderFactIndex = nextIdx;
           if (iconEl) iconEl.textContent = loaderFunFacts[loaderFactIndex].icon;
           if (textEl) textEl.textContent = loaderFunFacts[loaderFactIndex].text;
           if (strip)  strip.classList.remove('fade-out-fact');
@@ -2729,6 +2749,7 @@
 
   /* startLoaderLive — polls Worker KV until results are ready, then redirects */
   function startLoaderLive(submittedEmail, sessionId) {
+    liveSessionId = sessionId; // store so completeLoaderProgress can always wire the CTA
     // Start the visual loader with a long duration (2 min cap)
     var savedDuration = PROTOTYPE_DURATION;
     PROTOTYPE_DURATION = 120000;
@@ -2769,10 +2790,12 @@
     if (pctEl) pctEl.textContent = '100%';
     setTimeout(function() {
       document.getElementById('confirm-email-display').textContent = submittedEmail;
-      // Simulation mode: ensure CTA button has a valid href
+      // Wire CTA button — always include session when in live mode
       var btn = document.getElementById('btn-view-report');
-      if (btn && !btn.href.includes('?session=')) {
-        btn.href = 'career-navigator-results.html';
+      if (btn) {
+        btn.href = liveSessionId
+          ? 'career-navigator-results.html?session=' + encodeURIComponent(liveSessionId)
+          : 'career-navigator-results.html';
       }
       showScreen('confirmation');
     }, 800);
