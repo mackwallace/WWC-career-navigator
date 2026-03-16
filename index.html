@@ -2766,10 +2766,20 @@
         .then(function(json) {
           if (json.status === 'ready') {
             clearInterval(pollInterval);
-            loaderResponseReceived = true;
             // Wire the CTA button to pass the session ID
             var btn = document.getElementById('btn-view-report');
             if (btn) btn.href = 'career-navigator-results.html?session=' + encodeURIComponent(sessionId);
+            if (!loaderResponseReceived) {
+              loaderResponseReceived = true;
+              // If the bar already stopped at 90%, the progress interval is gone —
+              // complete the loader directly rather than waiting for a tick that never comes
+              if (loaderProgressValue >= 90) {
+                var pf = document.getElementById('loader-progress-fill');
+                var pe = document.getElementById('loader-pct');
+                completeLoaderProgress(pf, pe, submittedEmail);
+              }
+              // else: bar is still running and will detect loaderResponseReceived on its next tick
+            }
           }
         })
         .catch(function() { /* keep polling */ });
