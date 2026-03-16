@@ -917,9 +917,9 @@
     </div>
   </a>
   <div class="header-meta">
-    <span>Senior Professional</span>
+    <span class="header-meta-career-stage">Senior Professional</span>
     <span class="header-meta-sep">·</span>
-    <span>March 13, 2026</span>
+    <span class="header-meta-date">March 13, 2026</span>
     <span class="header-meta-sep">·</span>
     <span>Focused Guidance</span>
   </div>
@@ -931,11 +931,9 @@
   <h1 class="hero-title">Your Path Forward<br>in the Weather, Water &amp; Climate Sector</h1>
   <div class="hero-name">Dr. Morgan Ellis</div>
   <div class="hero-meta">
-    <span>Senior Research Meteorologist</span>
+    <span class="hero-role">Senior Research Meteorologist</span>
     <span class="hero-meta-sep">·</span>
-    <span>12+ years experience</span>
-    <span class="hero-meta-sep">·</span>
-    <span>Federal Sector</span>
+    <span class="hero-org">NOAA / National Weather Service</span>
   </div>
 </div>
 
@@ -953,25 +951,25 @@
         <div class="profile-col">
           <div class="profile-field">
             <div class="profile-field-label">Career Stage</div>
-            <div class="profile-field-value">Senior Professional (12+ years)</div>
+            <div class="profile-field-value profile-career-stage">Senior Professional (12+ years)</div>
           </div>
           <div class="profile-field">
             <div class="profile-field-label">Current Role</div>
-            <div class="profile-field-value">Senior Research Meteorologist, NOAA / National Weather Service</div>
+            <div class="profile-field-value profile-current-role">Senior Research Meteorologist, NOAA / National Weather Service</div>
           </div>
           <div class="profile-field">
             <div class="profile-field-label">Education</div>
-            <div class="profile-field-value">Ph.D. Atmospheric Sciences<br>M.S. Physical Meteorology</div>
+            <div class="profile-field-value profile-education">Ph.D. Atmospheric Sciences · M.S. Physical Meteorology</div>
           </div>
           <div class="profile-field">
             <div class="profile-field-label">Sector Experience</div>
-            <div class="profile-field-value">Federal Government · Research &amp; Operations</div>
+            <div class="profile-field-value profile-sector">Federal Government · Research &amp; Operations</div>
           </div>
         </div>
         <div class="profile-divider"></div>
         <div class="profile-col">
           <div class="profile-field-label" style="margin-bottom:12px;">Core Competencies</div>
-          <ul class="competency-list">
+          <ul class="competency-list profile-competencies">
             <li>Ensemble forecasting &amp; severe weather prediction</li>
             <li>Research team leadership (8-person teams, 4 years)</li>
             <li>Cross-agency scientific collaboration</li>
@@ -992,7 +990,7 @@
     </div>
     <div class="question-card">
       <div class="question-eyebrow">What you asked Career Navigator</div>
-      <p class="question-text">"I've spent 12 years in federal research and have led teams for the past four. I want to move into a divisional director or program manager role. The science is in my blood, but I've realized I create more impact by developing people and shaping programs than running models. How do I make this transition credibly — and how do I compete against candidates who've been on the administrative track longer?"</p>
+      <p class="question-text profile-career-question">"I've spent 12 years in federal research and have led teams for the past four. I want to move into a divisional director or program manager role. The science is in my blood, but I've realized I create more impact by developing people and shaping programs than running models. How do I make this transition credibly — and how do I compete against candidates who've been on the administrative track longer?"</p>
     </div>
   </section>
 
@@ -1006,8 +1004,8 @@
 
       <!-- Understanding Your Career Challenge — always present in report -->
       <div class="challenge-block">
-        <div class="challenge-block-label">Understanding Your Career Challenge</div>
-        <p class="challenge-block-text">You're seeking to transition from senior technical leadership into a formal director or program manager role — moving from informal influence to institutional authority. The primary challenge isn't your qualifications: it's that your leadership work has happened inside a research identity, making it less legible to hiring decision-makers than candidates who've been on an explicit administrative track. The key is strategic repositioning, not credential-building.</p>
+        <div class="challenge-block-label challenge-title">Understanding Your Career Challenge</div>
+        <p class="challenge-block-text challenge-body">You're seeking to transition from senior technical leadership into a formal director or program manager role — moving from informal influence to institutional authority. The primary challenge isn't your qualifications: it's that your leadership work has happened inside a research identity, making it less legible to hiring decision-makers than candidates who've been on an explicit administrative track. The key is strategic repositioning, not credential-building.</p>
       </div>
 
       <!-- Your Competitive Advantages — always present in report, variable count -->
@@ -1503,11 +1501,16 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
 
   function populatePage(d) {
     // ── Hero / Profile ──────────────────────────────────────
-    setText('.hero-name',         d.person_name);
-    setText('.hero-role',         d.current_role);
-    setText('.hero-org',          d.organization);
-    setText('.profile-career-stage',   d.career_stage);
-    setText('.profile-years',          d.years_experience);
+    setText('.hero-name',              d.person_name);
+    setText('.hero-role',              d.current_role);
+    setText('.hero-org',               d.organization);
+    setText('.header-meta-career-stage', d.career_stage);
+    if (d.submission_date) {
+      var dt = new Date(d.submission_date);
+      if (!isNaN(dt)) setText('.header-meta-date', dt.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }));
+    }
+    setText('.profile-career-stage',  (d.career_stage || '') + (d.years_experience ? ' · ' + d.years_experience : ''));
+    setText('.profile-current-role',  (d.current_role || '') + (d.organization ? ', ' + d.organization : ''));
     setText('.profile-sector',         d.sector);
     setText('.profile-education',      Array.isArray(d.education) ? d.education.join(' · ') : d.education);
     setText('.profile-career-question', d.career_question);
@@ -1517,7 +1520,7 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
       var compEl = document.querySelector('.profile-competencies');
       if (compEl) {
         compEl.innerHTML = d.competencies.map(function (c) {
-          return '<span class="competency-tag">' + escHtml(c) + '</span>';
+          return '<li>' + escHtml(c) + '</li>';
         }).join('');
       }
     }
@@ -1529,11 +1532,15 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
     if (d.advantages && d.advantages.length) {
       var advList = document.querySelector('.advantages-list');
       if (advList) {
-        advList.innerHTML = d.advantages.map(function (a) {
-          return '<li class="advantage-item">' +
-            '<span class="advantage-title">' + escHtml(a.title) + '</span>' +
-            '<span class="advantage-desc">'  + escHtml(a.desc || a.description)  + '</span>' +
-            '</li>';
+        advList.innerHTML = d.advantages.map(function (a, i) {
+          var num = String(i + 1).padStart(2, '0');
+          return '<div class="advantage-item">' +
+            '<div class="advantage-num">' + num + '</div>' +
+            '<div>' +
+              '<div class="advantage-title">' + escHtml(a.title) + '</div>' +
+              '<div class="advantage-desc">'  + escHtml(a.desc || a.description) + '</div>' +
+            '</div>' +
+            '</div>';
         }).join('');
       }
     }
