@@ -2626,6 +2626,7 @@
   var loaderFactIndex        = 0;
   var loaderMsgTimer         = null;
   var loaderFactTimer        = null;
+  var loaderSimTimer         = null;
   var liveSessionId          = null;
 
   function startLoader(submittedEmail) {
@@ -2746,7 +2747,7 @@
     }, factDelay);
 
     // Prototype: simulate API response arriving near end of duration
-    setTimeout(function() {
+    loaderSimTimer = setTimeout(function() {
       loaderResponseReceived = true;
     }, d - 500);
   }
@@ -2760,7 +2761,8 @@
     startLoader(submittedEmail);
     PROTOTYPE_DURATION = savedDuration;
 
-    // Override: don't auto-simulate a response
+    // Override: cancel the simulation timeout and don't auto-simulate a response
+    if (loaderSimTimer) { clearTimeout(loaderSimTimer); loaderSimTimer = null; }
     loaderResponseReceived = false;
 
     // Poll the Worker every 5 seconds
