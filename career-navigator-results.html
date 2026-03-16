@@ -1576,6 +1576,28 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
                 '</ul></div>'
             : '';
 
+          var detailBoxes = [
+            { label: 'Target Roles',      value: p.target_roles },
+            { label: 'Why It Fits',       value: p.why_it_fits },
+            { label: 'Timeline',          value: p.timeline },
+            { label: 'Key Consideration', value: p.key_consideration },
+          ].filter(function(b) { return b.value && b.value !== 'Timeline not specified.'; });
+
+          var detailsGridHTML = detailBoxes.length
+            ? '<div class="pathway-details">' +
+                detailBoxes.map(function(b) {
+                  return '<div class="pathway-detail">' +
+                    '<div class="pathway-detail-label">' + escHtml(b.label) + '</div>' +
+                    '<div class="pathway-detail-text">' + escHtml(b.value) + '</div>' +
+                    '</div>';
+                }).join('') +
+              '</div>'
+            : '';
+
+          var detailsParaHTML = p.details
+            ? '<p class="pathway-body" style="margin-top:12px;">' + escHtml(p.details) + '</p>'
+            : '';
+
           wrapper.insertAdjacentHTML('beforeend',
             '<div class="pathway-card ' + cardClass + '" data-letter="' + letter + '">' +
               '<div class="pathway-card-inner">' +
@@ -1586,8 +1608,9 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
                   '</div>' +
                   '<span class="pathway-badge ' + badgeClass + '">' + escHtml(p.badge || '') + '</span>' +
                 '</div>' +
-                '<p class="pathway-body">' + escHtml(p.summary || p.body || '') + '</p>' +
-                '<div class="pathway-details">' + escHtml(p.details || p.body || '') + '</div>' +
+                '<p class="pathway-body">' + escHtml(p.summary || '') + '</p>' +
+                detailsParaHTML +
+                detailsGridHTML +
                 actionsHTML +
               '</div>' +
             '</div>'
@@ -1605,8 +1628,11 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
       if (recList) {
         recList.innerHTML = d.recommendation_points.map(function (r) {
           return '<div class="rec-point">' +
-            '<span class="rec-point-title">' + escHtml(r.title) + '</span>' +
-            '<span class="rec-point-desc">'  + escHtml(r.desc || r.description)  + '</span>' +
+            '<div class="rec-point-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></div>' +
+            '<div style="flex:1;min-width:0;">' +
+              '<div class="rec-point-title">' + escHtml(r.title) + '</div>' +
+              '<div class="rec-point-desc">'  + escHtml(r.desc || r.description) + '</div>' +
+            '</div>' +
             '</div>';
         }).join('');
       }
