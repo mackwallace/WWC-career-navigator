@@ -1505,8 +1505,8 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
     }
 
     // ── Where You Stand ──────────────────────────────────────
-    setText('.challenge-block .challenge-title', d.challenge_title);
-    setText('.challenge-block .challenge-body',  d.challenge_body);
+    setText('.challenge-block .challenge-title', d.challenge_title || 'Your Career Challenge');
+    setText('.challenge-block .challenge-body',  d.challenge_body || d.challenge_paragraph);
 
     if (d.advantages && d.advantages.length) {
       var advList = document.querySelector('.advantages-list');
@@ -1514,7 +1514,7 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
         advList.innerHTML = d.advantages.map(function (a) {
           return '<li class="advantage-item">' +
             '<span class="advantage-title">' + escHtml(a.title) + '</span>' +
-            '<span class="advantage-desc">'  + escHtml(a.desc)  + '</span>' +
+            '<span class="advantage-desc">'  + escHtml(a.desc || a.description)  + '</span>' +
             '</li>';
         }).join('');
       }
@@ -1525,7 +1525,9 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
 
     if (d.pathways && d.pathways.length) {
       d.pathways.forEach(function (p) {
-        var card = document.querySelector('.pathway-card[data-letter="' + p.letter + '"]');
+        var badgeMap = { 'Recommended': 'A', 'Alternative': 'B', 'Longer-term': 'C' };
+        var letter = p.letter || badgeMap[p.badge] || p.badge;
+        var card = document.querySelector('.pathway-card[data-letter="' + letter + '"]');
         if (!card) return;
         var titleEl   = card.querySelector('.pathway-title');
         var summaryEl = card.querySelector('.pathway-summary');
@@ -1533,14 +1535,15 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
         var timelineEl = card.querySelector('.pathway-timeline');
         var investEl  = card.querySelector('.pathway-investment');
         if (titleEl)    titleEl.textContent   = p.title;
-        if (summaryEl)  summaryEl.textContent = p.summary;
-        if (detailEl)   detailEl.textContent  = p.details;
+        if (summaryEl)  summaryEl.textContent = p.summary || p.body;
+        if (detailEl)   detailEl.textContent  = p.details || p.body;
         if (timelineEl) timelineEl.textContent = p.timeline;
         if (investEl)   investEl.textContent  = p.investment;
-        if (p.success_factors && p.success_factors.length) {
+        var sfArr = p.success_factors || p.immediate_actions || [];
+        if (sfArr.length) {
           var sfList = card.querySelector('.pathway-success-factors');
           if (sfList) {
-            sfList.innerHTML = p.success_factors.map(function (f) {
+            sfList.innerHTML = sfArr.map(function (f) {
               return '<li>' + escHtml(f) + '</li>';
             }).join('');
           }
@@ -1558,7 +1561,7 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
         recList.innerHTML = d.recommendation_points.map(function (r) {
           return '<div class="rec-point">' +
             '<span class="rec-point-title">' + escHtml(r.title) + '</span>' +
-            '<span class="rec-point-desc">'  + escHtml(r.desc)  + '</span>' +
+            '<span class="rec-point-desc">'  + escHtml(r.desc || r.description)  + '</span>' +
             '</div>';
         }).join('');
       }
@@ -1569,7 +1572,8 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
       var col30 = document.querySelector('.nextstep-col.col-30 .nextstep-list');
       if (col30) {
         col30.innerHTML = d.action_plan_30_day.map(function (item) {
-          return '<li class="nextstep-item">' + escHtml(item) + '</li>';
+          var txt = typeof item === 'string' ? item : ((item.title ? item.title + ': ' : '') + (item.description || item.desc || ''));
+          return '<li class="nextstep-item">' + escHtml(txt) + '</li>';
         }).join('');
       }
     }
@@ -1578,16 +1582,17 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
       var col36 = document.querySelector('.nextstep-col.col-36 .nextstep-list');
       if (col36) {
         col36.innerHTML = d.action_plan_3_6_month.map(function (item) {
-          return '<li class="nextstep-item">' + escHtml(item) + '</li>';
+          var txt = typeof item === 'string' ? item : ((item.title ? item.title + ': ' : '') + (item.description || item.desc || ''));
+          return '<li class="nextstep-item">' + escHtml(txt) + '</li>';
         }).join('');
       }
     }
 
     // ── Resources ────────────────────────────────────────────
     if (d.resources) {
-      populateResourceCard('res-a', d.resources.communities);
-      populateResourceCard('res-b', d.resources.learning);
-      populateResourceCard('res-c', d.resources.tools);
+      populateResourceCard('res-a', d.resources.communities      || d.resources.professional_networks);
+      populateResourceCard('res-b', d.resources.learning            || d.resources.leadership_development);
+      populateResourceCard('res-c', d.resources.tools               || d.resources.visibility_positioning);
     }
   }
 
