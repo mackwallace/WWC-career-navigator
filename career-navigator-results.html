@@ -1463,11 +1463,15 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
   var sessionId = params.get('session');
   if (!sessionId) return; // no session — keep static data
 
+  // Hide page immediately so Dr. Ellis template never flashes
+  document.body.style.opacity = '0';
+  document.body.style.transition = 'opacity 0.35s ease';
+
   var pollInterval;
   var attempts = 0;
   var maxAttempts = 120; // 10 minutes at 5s intervals
 
-  pollInterval = setInterval(function () {
+  function poll() {
     attempts++;
     if (attempts > maxAttempts) { clearInterval(pollInterval); return; }
 
@@ -1477,10 +1481,15 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
         if (json.status === 'ready' && json.data) {
           clearInterval(pollInterval);
           populatePage(json.data);
+          document.body.style.opacity = '1'; // fade in with live data
         }
       })
       .catch(function () { /* keep polling */ });
-  }, 5000);
+  }
+
+  // Fire immediately, then every 5 seconds
+  poll();
+  pollInterval = setInterval(poll, 5000);
 
   function setText(selector, value) {
     var el = document.querySelector(selector);
