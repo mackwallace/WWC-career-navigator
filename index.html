@@ -1015,6 +1015,27 @@
       margin-bottom: 0;
     }
 
+    .loader-email-notice {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(42, 157, 142, 0.07);
+      border: 1px solid rgba(42, 157, 142, 0.22);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-top: 18px;
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--slate-gray);
+      line-height: 1.5;
+    }
+
+    .loader-email-notice svg {
+      flex-shrink: 0;
+      color: #2A9D8E;
+    }
+
     /* IMPROVEMENT 12 — Pipeline CSS */
     .pipeline {
       display: flex;
@@ -2045,7 +2066,10 @@
 
       <h2>Preparing Your Career Report...</h2>
       <p class="loader-subtext">Our AI career coach is analyzing your profile and crafting personalized guidance. This typically takes 3 minutes.</p>
-      <p class="loader-subtext" style="margin-top:8px;">Feel free to close this tab — a copy of your report will be sent to your email when it's ready.</p>
+      <div class="loader-email-notice">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <span>If you exit this tab, a copy of your report will be emailed to you when it's ready.</span>
+      </div>
 
       <!-- 3-stage pipeline -->
       <div class="pipeline" id="pipeline">
