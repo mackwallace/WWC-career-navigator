@@ -2706,7 +2706,7 @@
     loaderProgressInterval = setInterval(function() {
       if (loaderProgressValue >= 90) { clearInterval(loaderProgressInterval); return; }
       var remaining = 90 - loaderProgressValue;
-      var increment = Math.max(0.15, remaining * 0.022);
+      var increment = Math.max(0.08, remaining * 0.012);
       loaderProgressValue = Math.min(90, loaderProgressValue + increment);
       progressFill.style.width = loaderProgressValue + '%';
       if (pctEl) pctEl.textContent = Math.floor(loaderProgressValue) + '%';
