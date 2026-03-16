@@ -2238,11 +2238,11 @@
       education:        document.getElementById('education').value.trim(),
       field:            document.getElementById('field').value.trim(),
       skills:           document.getElementById('skills').value.trim(),
-      professional_org: document.getElementById('professional-org') ? document.getElementById('professional-org').value.trim() : '',
-      achievements:     document.getElementById('achievements') ? document.getElementById('achievements').value.trim() : '',
-      strengths:        document.getElementById('strengths') ? document.getElementById('strengths').value.trim() : '',
+      involvement:      document.getElementById('involvement') ? document.getElementById('involvement').value.trim() : '',
       linkedin:         document.getElementById('linkedin') ? document.getElementById('linkedin').value.trim() : '',
       career_question:  document.getElementById('career-question').value.trim(),
+      source:           window.location.href,
+      submission_date:  new Date().toISOString(),
     };
   }
 
