@@ -1500,7 +1500,7 @@ var WORKER_URL = 'https://cn-career-navigator-proxy.s-mackenzie-wallace.workers.
     setText('.profile-career-stage',   d.career_stage);
     setText('.profile-years',          d.years_experience);
     setText('.profile-sector',         d.sector);
-    setText('.profile-education',      d.education);
+    setText('.profile-education',      Array.isArray(d.education) ? d.education.join(' · ') : d.education);
     setText('.profile-career-question', d.career_question);
 
     // Competencies list
