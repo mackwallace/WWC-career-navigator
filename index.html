@@ -2547,8 +2547,12 @@
       })
         .then(function(res) { return res.json(); })
         .then(function(json) {
-          var sessionId = json.sessionId;
-          startLoaderLive(submittedEmail, sessionId);
+          if (json && json.sessionId) {
+            startLoaderLive(submittedEmail, json.sessionId);
+          } else {
+            // Worker error (rate limit, bad response) — fall back to simulation
+            startLoader(submittedEmail);
+          }
         })
         .catch(function() {
           // Fallback to simulation on network error
